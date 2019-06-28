@@ -3,7 +3,7 @@ package a1;
 /** an instance of a person */
 public class Person {
 	
-	// class invariant: string that only contains letters
+	// class invariant: non-null and non-empty string
 	private String name;
 	
 	// class invariant: integer that contains a valid year
