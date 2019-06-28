@@ -8,7 +8,14 @@ class PersonTest {
 
 	@Test
 	void personTest() {
-		fail("Not yet implemented");
+		
+		// test for a new person Kurt 
+		Person kurt = new Person("Kurt",1999,4,12);
+		assertEquals("Kurt", kurt.name());
+		assertEquals(1999, kurt.birthYear());
+		assertEquals(4,kurt.birthMonth());
+		assertEquals(12,kurt.birthDay());
+		
 	}
 	
 	@Test
