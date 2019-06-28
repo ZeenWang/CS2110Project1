@@ -3,11 +3,23 @@ package a1;
 /** an instance of a person */
 public class Person {
 	
+	// class invariant: string that only contains letters
+	private String name;
+	
+	// class invariant: integer that contains a valid year
+	private int birthYear; 
+	
+	// class invariant: in range [1..12]
+	private int birthMonth;
+	
+	// class invariant: in range [1..31]
+	private int birthDay;
+	
 	/**
 	 * Constructor: Initialize a person with the given name and birthdate, and unknown parents.
 	 * The name must be non-null and non-empty.
 	 * 
-	 * @param name is a string
+	 * @param name is a string that only contains letters
 	 * @param birthYear is a valid year
 	 * @param birthMonth is in the range 1..12 
 	 * @param birthDay must be in the range 1..31
