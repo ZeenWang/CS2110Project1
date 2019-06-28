@@ -15,7 +15,7 @@ public class Person {
 	// class invariant: in range [1..31]
 	private int birthDay;
 	
-	// class invariant: >=0
+	// class invariant: integer >=0
 	private int numChildren;
 	
 	// class invariant: a person's mother of type Person
