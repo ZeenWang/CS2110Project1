@@ -29,7 +29,7 @@ class PersonTest {
 	}
 	
 	@Test
-	void motherTest() {
+	void motherTests() {
 		
 		// test for methods mother() and setMother()
 		Person kurt = new Person("Kurt",1999,4,12);
@@ -37,17 +37,27 @@ class PersonTest {
 		kurt.setMother(daisy);
 		assertEquals(daisy, kurt.mother());
 		
+		// change mother
+		Person martha = new Person("Martha",1989,1,4);
+		kurt.setMother(martha);
+		assertEquals(martha,kurt.mother());
+		
 		System.out.println("mother() and setMother() test cases passed!");
 	}
 	
 	@Test
-	void fatherTest() {
+	void fatherTests() {
 		
 		// test for methods father() and setFather()
 		Person kurt = new Person("Kurt",1999,4,12);
 		Person alan = new Person("Alan",1969,21,11);
 		kurt.setFather(alan);
 		assertEquals(alan, kurt.father());
+		
+		// change father
+		Person bob = new Person("Bob",1976,12,3);
+		kurt.setFather(bob);
+		assertEquals(bob, kurt.father());
 			
 		System.out.println("father() and setFather() test cases passed!");
 	}
@@ -67,7 +77,19 @@ class PersonTest {
 		assertEquals(1, alan.numChildren);
 		assertEquals(1, daisy.numChildren);
 		
+		// change father
+		Person bob = new Person("Bob",1976,12,3);
+		kurt.setFather(bob);
+		assertEquals(1, bob.numChildren);
+		assertEquals(1, daisy.numChildren);
+		assertEquals(0,alan.numChildren);
 		
+		// change mother
+		Person martha = new Person("Martha",1989,1,4);
+		kurt.setMother(martha);
+		assertEquals(1,martha.numChildren);
+		assertEquals(0,daisy.numChildren);
+		assertEquals(0,alan.numChildren);
 		
 		System.out.println("numChildren() test cases passed!");
 	}

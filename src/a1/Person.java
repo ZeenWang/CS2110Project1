@@ -15,7 +15,6 @@ public class Person {
 	// class invariant: in range [1..31]
 	private int birthDay;
 	
-	
 	// class invariant: >=0
 	public int numChildren;
 	
@@ -29,7 +28,7 @@ public class Person {
 	 * Constructor: Initialize a person with the given name and birthdate, and unknown parents.
 	 * The name must be non-null and non-empty.
 	 * 
-	 * @param name is a string that only contains letters
+	 * @param name is non-null and non-empty 
 	 * @param birthYear is a valid year
 	 * @param birthMonth is in the range 1..12 
 	 * @param birthDay must be in the range 1..31
@@ -39,6 +38,9 @@ public class Person {
 		this.birthYear = birthYear;
 		this.birthMonth = birthMonth;
 		this.birthDay = birthDay;
+		// unknown parents
+		this.mother = null;
+		this.father = null;
 	}
 	
 	/** returns this person's name */
@@ -82,18 +84,44 @@ public class Person {
 	 * @param m is this person's mother of type of Person
 	 */
 	void setMother(Person m) {
-		if (mother == null) this.mother = null;
+		if (m == null) this.mother = null;
+		checkMother(m);
 		this.mother = m;
-		mother.numChildren ++;
+		this.mother.numChildren ++;
 	}
 	/**
 	 * changes this person's father to f
 	 * if f is null, father is unknown 
 	 * @param f is this person's father of type Person
 	 * */
-	void setFather(Person father) {
-		if (father == null) this.father = null;
-		this.father = father;
-		father.numChildren ++;
+	void setFather(Person f) {
+		if (f == null) this.father = null;
+		checkFather(f);
+		this.father = f;
+		this.father.numChildren ++;
 	}
+	
+	/**
+	 * checks if previous father and current father are the same person
+	 * if they are different a new father will be assigned and the old 
+	 * father's number of children will be subtracted by 1 
+	 * */
+	void checkFather(Person f) {
+		if (this.father!=null && this.father!=f) {
+			this.father.numChildren--;
+		}
+	}
+	/**
+	 * checks if previous father and current father are the same person
+	 * if they are different a new father will be assigned and the old 
+	 * father's number of children will be subtracted by 1 
+	* */	
+	void checkMother(Person m) {
+		if (this.mother!=null && this.mother!=m) {
+			this.mother.numChildren--;
+		}
+		
+	}
+
+	
 }
