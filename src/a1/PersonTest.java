@@ -30,15 +30,25 @@ class PersonTest {
 	
 	@Test
 	void motherTest() {
+		
+		// test for methods mother() and setMother()
 		Person kurt = new Person("Kurt",1999,4,12);
 		Person daisy = new Person("Daisy",1975,9,8);
-		Person alan = new Person("Alan",1969,21,11);
+		kurt.setMother(daisy);
+		assertEquals(daisy, kurt.mother());
+		assertEquals(daisy.numChildren(),1);
 		
 	}
 	
 	@Test
 	void fatherTest() {
 		
+		// test for methods father() and setFather()
+		Person kurt = new Person("Kurt",1999,4,12);
+		Person alan = new Person("Alan",1969,21,11);
+		kurt.setFather(alan);
+		assertEquals(alan, kurt.father());
+		assertEquals(alan.numChildren(),1);
 	}
 
 	

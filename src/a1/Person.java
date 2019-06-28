@@ -17,7 +17,7 @@ public class Person {
 	
 	
 	// class invariant: >=0
-	private int numChildren;
+	public int numChildren;
 	
 	// class invariant: a person's mother of type Person
 	private Person mother;
@@ -39,9 +39,6 @@ public class Person {
 		this.birthYear = birthYear;
 		this.birthMonth = birthMonth;
 		this.birthDay = birthDay;
-		
-		
-		
 	}
 	
 	/** returns this person's name */
@@ -51,12 +48,12 @@ public class Person {
 	
 	/** returns this person's mother */
 	public Person mother() {
-		throw new NotImplementedError();
+		return this.mother;
 	}
 	
 	/** returns this person's father */
 	public Person father() {
-		throw new NotImplementedError();
+		return this.father;
 	}
 	
 	/** returns this person's birth year */
@@ -76,7 +73,25 @@ public class Person {
 	
 	/** returns the number of Persons with this as a parent */
 	public int numChildren() {
-		throw new NotImplementedError();
+		return numChildren;
 	}
 	
+	/**
+	 * changes this person's mother to m 
+	 * if m is null, mother is unknown 
+	 */
+	void setMother(Person m) {
+		if (mother == null) this.mother = null;
+		this.mother = m;
+		mother.numChildren ++;
+	}
+	/**
+	 * changes this person's father to f
+	 * if f is null, father is unknown 
+	 * */
+	void setFather(Person father) {
+		if (father == null) this.father = null;
+		this.father = father;
+		father.numChildren ++;
+	}
 }
