@@ -25,7 +25,7 @@ class PersonTest {
 		assertEquals(1, ezra.birthMonth());
 		assertEquals(11, ezra.birthDay());
 		
-	    
+		System.out.println("Contructor tests passed!");
 	}
 	
 	@Test
@@ -36,8 +36,8 @@ class PersonTest {
 		Person daisy = new Person("Daisy",1975,9,8);
 		kurt.setMother(daisy);
 		assertEquals(daisy, kurt.mother());
-		assertEquals(daisy.numChildren(),1);
 		
+		System.out.println("mother() and setMother() test cases passed!");
 	}
 	
 	@Test
@@ -48,12 +48,29 @@ class PersonTest {
 		Person alan = new Person("Alan",1969,21,11);
 		kurt.setFather(alan);
 		assertEquals(alan, kurt.father());
-		assertEquals(alan.numChildren(),1);
+			
+		System.out.println("father() and setFather() test cases passed!");
 	}
 
 	
 	@Test
 	void numChildrenTest() {
 		
+		// test for numChildren()
+		
+		// 1 child for two parents 
+		Person kurt = new Person("Kurt",1999,4,12);
+		Person daisy = new Person("Daisy",1975,9,8);
+		Person alan = new Person("Alan",1969,21,11);
+		kurt.setFather(alan);
+		kurt.setMother(daisy);
+		assertEquals(1, alan.numChildren);
+		assertEquals(1, daisy.numChildren);
+		
+		
+		
+		System.out.println("numChildren() test cases passed!");
 	}
+	
+	
 }

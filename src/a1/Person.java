@@ -79,6 +79,7 @@ public class Person {
 	/**
 	 * changes this person's mother to m 
 	 * if m is null, mother is unknown 
+	 * @param m is this person's mother of type of Person
 	 */
 	void setMother(Person m) {
 		if (mother == null) this.mother = null;
@@ -88,6 +89,7 @@ public class Person {
 	/**
 	 * changes this person's father to f
 	 * if f is null, father is unknown 
+	 * @param f is this person's father of type Person
 	 * */
 	void setFather(Person father) {
 		if (father == null) this.father = null;
