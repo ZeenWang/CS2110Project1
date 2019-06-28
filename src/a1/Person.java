@@ -16,7 +16,7 @@ public class Person {
 	private int birthDay;
 	
 	// class invariant: >=0
-	public int numChildren;
+	private int numChildren;
 	
 	// class invariant: a person's mother of type Person
 	private Person mother;
@@ -83,18 +83,19 @@ public class Person {
 	 * if m is null, mother is unknown 
 	 * @param m is this person's mother of type of Person
 	 */
-	void setMother(Person m) {
+	public void setMother(Person m) {
 		if (m == null) this.mother = null;
 		checkMother(m);
 		this.mother = m;
 		this.mother.numChildren ++;
 	}
+	
 	/**
 	 * changes this person's father to f
 	 * if f is null, father is unknown 
 	 * @param f is this person's father of type Person
 	 * */
-	void setFather(Person f) {
+	public void setFather(Person f) {
 		if (f == null) this.father = null;
 		checkFather(f);
 		this.father = f;
@@ -105,23 +106,24 @@ public class Person {
 	 * checks if previous father and current father are the same person
 	 * if they are different a new father will be assigned and the old 
 	 * father's number of children will be subtracted by 1 
+	 * @param f is a father of type Person
 	 * */
-	void checkFather(Person f) {
+	public void checkFather(Person f) {
 		if (this.father!=null && this.father!=f) {
 			this.father.numChildren--;
 		}
 	}
+	
 	/**
 	 * checks if previous father and current father are the same person
 	 * if they are different a new father will be assigned and the old 
 	 * father's number of children will be subtracted by 1 
+	 * @param m is a mother of type Person
 	* */	
-	void checkMother(Person m) {
+	public void checkMother(Person m) {
 		if (this.mother!=null && this.mother!=m) {
 			this.mother.numChildren--;
 		}
-		
 	}
-
 	
 }
