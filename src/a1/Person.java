@@ -156,6 +156,25 @@ public class Person {
 	public void setBirthDat(int d) {
 		birthDay=d;
 	}
-
+	
+	/**
+	 * Find if one is the a half sibling of another. 
+	 * Precondition: requires that other is non-null.
+	 * @param other a Person object one compared with.
+	 * @return true if this and other share a known parent. 
+	 */
+	public boolean isHalfSibling(Person other) {
+		throw new NotImplementedError();
+	}
+	
+	/**
+	 * Find if one is older than another.
+	 * Precondition: requires that other is non-null.
+	 * @param other a Person object one compared with.
+	 * @return true if this person’s birthday is before other’s. 
+	 */
+	public boolean isOlderThan(Person other) {
+		throw new NotImplementedError();
+	}
 
 }
