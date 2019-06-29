@@ -108,7 +108,7 @@ public class Person {
 	 * father's number of children will be subtracted by 1 
 	 * @param f is a father of type Person
 	 * */
-	public void checkFather(Person f) {
+	private void checkFather(Person f) {
 		if (this.father!=null && this.father!=f) {
 			this.father.numChildren--;
 		}
@@ -120,10 +120,42 @@ public class Person {
 	 * father's number of children will be subtracted by 1 
 	 * @param m is a mother of type Person
 	* */	
-	public void checkMother(Person m) {
+	private void checkMother(Person m) {
 		if (this.mother!=null && this.mother!=m) {
 			this.mother.numChildren--;
 		}
 	}
 	
+	/**
+	 * Change this person’s name
+	 * @param name a String of new name.
+	 */
+	public void setName(String name) {
+		this.name=name;
+	}
+	/**
+	 * Change this person’s birth year to y.
+	 * @param y a integer of new birth year.
+	 */
+	public void setBirthYear(int y) {
+		birthYear=y;
+	}
+	
+	/**
+	 * Change this person’s birth month to m.
+	 * @param m a integer of new birth month.
+	 */
+	public void setBirthMonth(int m) {
+		birthMonth=m;
+	}
+	
+	/**
+	 * Change this person’s birth day to d.
+	 * @param d a integer of new birth day.
+	 */
+	public void setBirthDat(int d) {
+		birthDay=d;
+	}
+
+
 }
