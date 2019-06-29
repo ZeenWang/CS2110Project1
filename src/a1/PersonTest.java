@@ -94,5 +94,23 @@ class PersonTest {
 		System.out.println("numChildren() test cases passed!");
 	}
 	
-	
+	@Test
+	void settersTest() {
+		// create a new person Kurt
+		Person kurt = new Person("Kurt",1999,4,12);
+		
+		//set new birthday and name
+		kurt.setBirthDat(4);
+		kurt.setBirthMonth(11);
+		kurt.setBirthYear(2001);
+		kurt.setName("zeen");
+		
+		//test
+		assertEquals("zeen", kurt.name());
+		assertEquals(2001, kurt.birthYear());
+		assertEquals(11, kurt.birthMonth());
+		assertEquals(4, kurt.birthDay());
+		
+		System.out.println("Setters tests passed!");
+	}
 }
