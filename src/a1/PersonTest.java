@@ -42,6 +42,16 @@ class PersonTest {
 		kurt.setMother(martha);
 		assertEquals(martha,kurt.mother());
 		
+		Person kate = new Person("Kate",1978,2,3);
+		kurt.setMother(kate);
+		assertEquals(kate,kurt.mother());
+		
+		// unknown mother
+		Person unknown = null;
+		kurt.setMother(unknown);
+		assertEquals(unknown, kurt.mother());
+		
+		
 		System.out.println("mother() and setMother() test cases passed!");
 	}
 	

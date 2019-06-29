@@ -80,34 +80,44 @@ public class Person {
 	
 	/**
 	 * changes this person's mother to m 
-	 * if m is null, mother is unknown 
+	 * if m is null, mother is unknown
+	 * 
+	 * calls a helper function setFather 
 	 * @param m is this person's mother of type of Person
 	 */
 	public void setMother(Person m) {
-		if (m == null) this.mother = null;
-		checkMother(m);
-		this.mother = m;
-		this.mother.numChildren ++;
+		if (m == null) {
+			this.mother = null;
+		} 
+		else {
+			 checkMother(m);
+			 this.mother = m;
+			 this.mother.numChildren ++;
+		}
 	}
 	
 	/**
 	 * changes this person's father to f
 	 * if f is null, father is unknown 
+	 * 
+	 * calls a helper function setMother
 	 * @param f is this person's father of type Person
 	 * */
 	public void setFather(Person f) {
-		if (f == null) this.father = null;
-		checkFather(f);
-		this.father = f;
-		this.father.numChildren ++;
+		if (f == null) {
+			this.father = null;
+		} 
+		else {
+			checkFather(f);
+			this.father = f;
+			this.father.numChildren ++;
+		}
 	}
 	
 	/**
 	 * checks if previous father and current father are the same person
-	 * if they are different a new father will be assigned and the old 
-	 * father's number of children will be subtracted by 1 
 	 * @param f is a father of type Person
-	 * */
+	 **/
 	public void checkFather(Person f) {
 		if (this.father!=null && this.father!=f) {
 			this.father.numChildren--;
@@ -116,10 +126,8 @@ public class Person {
 	
 	/**
 	 * checks if previous father and current father are the same person
-	 * if they are different a new father will be assigned and the old 
-	 * father's number of children will be subtracted by 1 
 	 * @param m is a mother of type Person
-	* */	
+	 **/	
 	public void checkMother(Person m) {
 		if (this.mother!=null && this.mother!=m) {
 			this.mother.numChildren--;
