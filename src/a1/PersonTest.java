@@ -68,7 +68,16 @@ class PersonTest {
 		Person bob = new Person("Bob",1976,12,3);
 		kurt.setFather(bob);
 		assertEquals(bob, kurt.father());
-			
+		
+		Person dave = new Person ("Dave",1982,2,4);
+		kurt.setFather(dave);
+		assertEquals(dave,kurt.father());
+		
+		// unknown father
+		Person unknown = null;
+		kurt.setFather(unknown);
+		assertEquals(unknown,kurt.father());
+		
 		System.out.println("father() and setFather() test cases passed!");
 	}
 
