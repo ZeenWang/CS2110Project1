@@ -153,7 +153,7 @@ public class Person {
 	 * Change this person’s birth day to d.
 	 * @param d a integer of new birth day.
 	 */
-	public void setBirthDat(int d) {
+	public void setBirthDay(int d) {
 		birthDay=d;
 	}
 	
@@ -164,7 +164,10 @@ public class Person {
 	 * @return true if this and other share a known parent. 
 	 */
 	public boolean isHalfSibling(Person other) {
-		throw new NotImplementedError();
+		if (other.father()==this.father() || other.father()==this.mother() || 
+			other.mother()== this.mother() || other.mother()== this.father())
+			return true;
+		return false;
 	}
 	
 	/**
@@ -174,7 +177,13 @@ public class Person {
 	 * @return true if this person’s birthday is before other’s. 
 	 */
 	public boolean isOlderThan(Person other) {
-		throw new NotImplementedError();
+		if (this.birthYear() != other.birthYear())
+			return this.birthYear() < other.birthYear();
+		if (this.birthMonth() != other.birthMonth())
+			return this.birthMonth() < other.birthMonth();
+		if (this.birthDay()!= other.birthDay())
+			return this.birthDay() < other.birthDay();
+		return false;
 	}
 
 }

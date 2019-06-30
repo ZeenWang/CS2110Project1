@@ -100,7 +100,7 @@ class PersonTest {
 		Person kurt = new Person("Kurt",1999,4,12);
 		
 		//set new birthday and name
-		kurt.setBirthDat(4);
+		kurt.setBirthDay(4);
 		kurt.setBirthMonth(11);
 		kurt.setBirthYear(2001);
 		kurt.setName("zeen");
