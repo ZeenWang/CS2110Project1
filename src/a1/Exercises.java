@@ -1,5 +1,10 @@
 package a1;
 
+import static org.junit.Assert.fail;
+
+import com.sun.jdi.Value;
+import com.sun.source.doctree.ReturnTree;
+
 public class Exercises {
 	
 	/**
@@ -8,8 +13,10 @@ public class Exercises {
 	 * @return true if s is the same backwards and forwards.
 	 */
 	public static boolean isPalindrome(String s) {
-		throw new NotImplementedError();
-		
+		for(int i=0;i< s.length()/2;i++)
+			if(s.charAt(i) != s.charAt(s.length() -i -1)) 
+				return false;
+		return true;
 	}
 	
 	/**
@@ -18,8 +25,8 @@ public class Exercises {
 	 * @return a copy of s with all whitespace and punctuation removed.
 	 */
 	public static String normalize(String s) {
-		throw new NotImplementedError();
-		
+		s = s.replaceAll("[^a-zA-Z0-9]", "");
+		return s;
 	}
 	
 	/**
@@ -28,8 +35,23 @@ public class Exercises {
 	 * @return the median of the values.
 	 */
 	public static int median(int[ ] values) {
-		throw new NotImplementedError();
-		
+		// sort the array.
+		int buffer=values[0];
+		for (int i=0;i<(values.length/2+1);i++) {
+			buffer=values[i];
+			for(int j=i;j<values.length;j++) {
+				if(values[j]<buffer) {
+					buffer=values[j];
+					values[j]=values[i];
+					values[i]=buffer;
+				}
+			}
+		}
+		// calculate the median.
+		if(values.length % 2 ==0)
+			return (values[(values.length+1)/2] + values[(values.length-1)/2])/2;
+		else 
+			return values[values.length/2];
 	}
 	
 	/**
@@ -38,8 +60,12 @@ public class Exercises {
 	 * @return the number of 0’s in values.
 	 */
 	public static int numZeros(int[ ] values) {
-		throw new NotImplementedError();
-		
+		int count=0;
+		for (int i: values) {
+			if (i==0)
+				count++;
+		}
+		return count;
 	}
 	
 	/**
@@ -48,8 +74,10 @@ public class Exercises {
 	 * @return the mean of the values.
 	 */
 	public static double mean(int[ ] values) {
-		throw new NotImplementedError();
-		
+		int sum=0;
+		for(int i : values)
+			sum=sum+i;
+		return sum/values.length;
 	}
 	
 	/** 
@@ -59,7 +87,10 @@ public class Exercises {
 	 * @return true if all of the values on the diagonal are the same.
 	 */
 	public static boolean hasConstDiagonal(int[ ][ ] values) {
-		throw new NotImplementedError();
-		
+		for (int i = 0; i < values.length; i++) {
+			if(values[i][i]!= values[i][values.length-i-1] || values[i][values.length-i-1] != values[0][0] || values[i][i] != values[0][0])
+				return false;
+		}
+		return true;
 	}
 }

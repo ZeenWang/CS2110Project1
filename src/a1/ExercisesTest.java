@@ -10,12 +10,10 @@ class ExercisesTest {
 	void test() {
 
 		// test for method hasConstDiagonal.
-		int[][] matrixA = {{1,2,3},{2,1,3},{3,2,1}}; 
+		int[][] matrixA = {{3,2,3},{2,3,3},{3,2,3}}; 
 		int[][] matrixB = {{1,2,3},{2,3,3},{3,2,1}}; 
-		int[][] matrixC = {{1,2,3},{2,3,3},{3,2,1}}; 
 		assertEquals(true, Exercises.hasConstDiagonal(matrixA));
-		assertEquals(true, Exercises.hasConstDiagonal(matrixB));
-		assertEquals(false, Exercises.hasConstDiagonal(matrixC));
+		assertEquals(false, Exercises.hasConstDiagonal(matrixB));
 		System.out.println("Method hasConstDiagonal Tested!");
 		
 		// test for method mean.
