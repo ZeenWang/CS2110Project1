@@ -17,6 +17,8 @@ class PersonTest {
 		assertEquals(1999, kurt.birthYear());
 		assertEquals(4, kurt.birthMonth());
 		assertEquals(12, kurt.birthDay());
+		assertEquals(null, kurt.mother());
+		assertEquals(null,kurt.father());
 		
 		// test for a new person Ezra
 		Person ezra = new Person("Ezra",1807,1,11);
@@ -24,6 +26,8 @@ class PersonTest {
 		assertEquals(1807, ezra.birthYear());
 		assertEquals(1, ezra.birthMonth());
 		assertEquals(11, ezra.birthDay());
+		assertEquals(null,ezra.mother());
+		assertEquals(null,ezra.father());
 		
 		System.out.println("Contructor tests passed!");
 	}
@@ -60,6 +64,7 @@ class PersonTest {
 		
 		// test for methods father() and setFather()
 		Person kurt = new Person("Kurt",1999,4,12);
+		assertEquals(null, kurt.father());
 		Person alan = new Person("Alan",1969,21,11);
 		kurt.setFather(alan);
 		assertEquals(alan, kurt.father());
@@ -107,13 +112,22 @@ class PersonTest {
 		Person martha = new Person("Martha",1989,1,4);
 		kurt.setMother(martha);
 		assertEquals(1,martha.numChildren());
+		assertEquals(1, bob.numChildren());
+		assertEquals(0,daisy.numChildren());
+		assertEquals(0,alan.numChildren());
+		
+		// unknown parents 
+		kurt.setFather(null);
+		kurt.setMother(null);
+		assertEquals(0,martha.numChildren());
+		assertEquals(0, bob.numChildren());
 		assertEquals(0,daisy.numChildren());
 		assertEquals(0,alan.numChildren());
 		
 		System.out.println("numChildren() test cases passed!");
 	}
 	
-	@Test
+	/**@Test
 	void settersTest() {
 		// create a new person Kurt
 		Person kurt = new Person("Kurt",1999,4,12);
@@ -183,5 +197,5 @@ class PersonTest {
 		
 		
 		System.out.println("Comparisons tests passed!");
-	}
+	}*/
 }

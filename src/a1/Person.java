@@ -82,11 +82,12 @@ public class Person {
 	 * changes this person's mother to m 
 	 * if m is null, mother is unknown
 	 * 
-	 * calls a helper function setFather 
+	 * calls a helper function checkMother
 	 * @param m is this person's mother of type of Person
 	 */
 	public void setMother(Person m) {
 		if (m == null) {
+			this.mother.numChildren --;
 			this.mother = null;
 		} 
 		else {
@@ -100,11 +101,12 @@ public class Person {
 	 * changes this person's father to f
 	 * if f is null, father is unknown 
 	 * 
-	 * calls a helper function setMother
+	 * calls a helper function checkFather
 	 * @param f is this person's father of type Person
 	 * */
 	public void setFather(Person f) {
 		if (f == null) {
+			this.father.numChildren --;
 			this.father = null;
 		} 
 		else {
@@ -116,11 +118,11 @@ public class Person {
 	
 	/**
 	 * checks if previous father and current father are the same person
-	 * updates numChildren of both if they are different fathers
+	 * updates numChildren of previous father if they are different fathers
 	 * 
 	 * @param f is a father of type Person
 	 **/
-	public void checkFather(Person f) {
+	private void checkFather(Person f) {
 		if (this.father!=null && this.father!=f) {
 			this.father.numChildren--;
 		}
@@ -128,11 +130,11 @@ public class Person {
 	
 	/**
 	 * checks if previous father and current father are the same person
-	 * updates numChildren of both if they are different fathers 
+	 * updates numChildren of previous father if they are different fathers 
 	 * 
 	 * @param m is a mother of type Person
 	 **/	
-	public void checkMother(Person m) {
+	private void checkMother(Person m) {
 		if (this.mother!=null && this.mother!=m) {
 			this.mother.numChildren--;
 		}
