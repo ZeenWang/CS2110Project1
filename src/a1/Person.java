@@ -113,16 +113,9 @@ public class Person {
 			this.father.numChildren ++;
 		}
 	}
-
-	/**
-	 * checks if previous father and current father are the same person
-	 * if current mother is not null or the same as the new mother
-	 *  the person's mother will update
-	 *  
-	 * @param m is a mother of type Person
-	 **/	
+	
 	public void checkMother(Person m) {
-		if (this.mother!=null && this.mother!=m) {
+		if(this.mother!=null && this.mother!=m) {
 			this.mother.numChildren--;
 		}
 	}

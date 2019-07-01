@@ -113,5 +113,75 @@ class PersonTest {
 		System.out.println("numChildren() test cases passed!");
 	}
 	
+	@Test
+	void settersTest() {
+		// create a new person Kurt
+		Person kurt = new Person("Kurt",1999,4,12);
+		
+		// set new birthday and name
+		kurt.setBirthDay(4);
+		kurt.setBirthMonth(11);
+		kurt.setBirthYear(2001);
+		kurt.setName("zeen");
+		
+		// test
+		assertEquals("zeen", kurt.name());
+		assertEquals(2001, kurt.birthYear());
+		assertEquals(11, kurt.birthMonth());
+		assertEquals(4, kurt.birthDay());
+		
+		System.out.println("Setters tests passed!");
+	}
 	
+	@Test
+	void comparisonsTest() {
+		// create new persons Kurt and Bob.
+		Person kurt = new Person("Kurt",1999,4,12);
+		Person bob = new Person("Bob",1976,12,3);
+
+		// test for isOlderThan method.
+		assertEquals(true, bob.isOlderThan(kurt));
+		bob.setBirthYear(2000);
+		assertEquals(false, bob.isOlderThan(kurt));
+		bob.setBirthYear(1999);
+		assertEquals(false, bob.isOlderThan(kurt));
+		bob.setBirthMonth(2);
+		assertEquals(true, bob.isOlderThan(kurt));
+		bob.setBirthMonth(4);
+		assertEquals(true, bob.isOlderThan(kurt));
+		bob.setBirthDay(22);;
+		assertEquals(false, bob.isOlderThan(kurt));
+		bob.setBirthDay(12);;
+		assertEquals(false, bob.isOlderThan(kurt));
+		
+		// create parents.
+		Person daisy = new Person("Daisy",1975,9,8);
+		Person alan = new Person("Alan",1969,21,11);
+		Person martha = new Person("Martha",1989,1,4);
+		
+		// set parents. 
+		kurt.setFather(daisy);
+		kurt.setMother(alan);
+		bob.setFather(daisy);
+		bob.setMother(martha);
+		
+		daisy.setFather(alan);
+		daisy.setMother(martha);
+		martha.setMother(alan);
+		
+		// test for isHalfSibling method.
+		assertEquals(true, daisy.isHalfSibling(kurt));
+		assertEquals(true, bob.isHalfSibling(kurt));
+		assertEquals(true, martha.isHalfSibling(kurt));
+		daisy.setFather(alan);
+		daisy.setMother(kurt);
+		bob.setFather(martha);
+		bob.setMother(daisy);
+		assertEquals(true, bob.isHalfSibling(kurt));
+		assertEquals(true, daisy.isHalfSibling(kurt));
+		assertEquals(false, daisy.isHalfSibling(alan));
+		
+		
+		System.out.println("Comparisons tests passed!");
+	}
 }
