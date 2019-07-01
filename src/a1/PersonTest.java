@@ -65,7 +65,7 @@ class PersonTest {
 		// test for methods father() and setFather()
 		Person kurt = new Person("Kurt",1999,4,12);
 		assertEquals(null, kurt.father());
-		Person alan = new Person("Alan",1969,21,11);
+		Person alan = new Person("Alan",1969,10,11);
 		kurt.setFather(alan);
 		assertEquals(alan, kurt.father());
 		
@@ -95,7 +95,7 @@ class PersonTest {
 		// 1 child for two parents 
 		Person kurt = new Person("Kurt",1999,4,12);
 		Person daisy = new Person("Daisy",1975,9,8);
-		Person alan = new Person("Alan",1969,21,11);
+		Person alan = new Person("Alan",1969,10,11);
 		kurt.setFather(alan);
 		kurt.setMother(daisy);
 		assertEquals(1, alan.numChildren());
@@ -127,7 +127,7 @@ class PersonTest {
 		System.out.println("numChildren() test cases passed!");
 	}
 	
-	/**@Test
+	@Test
 	void settersTest() {
 		// create a new person Kurt
 		Person kurt = new Person("Kurt",1999,4,12);
@@ -170,7 +170,7 @@ class PersonTest {
 		
 		// create parents.
 		Person daisy = new Person("Daisy",1975,9,8);
-		Person alan = new Person("Alan",1969,21,11);
+		Person alan = new Person("Alan",1969,10,11);
 		Person martha = new Person("Martha",1989,1,4);
 		
 		// set parents. 
@@ -184,6 +184,7 @@ class PersonTest {
 		martha.setMother(alan);
 		
 		// test for isHalfSibling method.
+	   // add kurt.isHalfSibling(kurt)
 		assertEquals(true, daisy.isHalfSibling(kurt));
 		assertEquals(true, bob.isHalfSibling(kurt));
 		assertEquals(true, martha.isHalfSibling(kurt));
@@ -197,5 +198,5 @@ class PersonTest {
 		
 		
 		System.out.println("Comparisons tests passed!");
-	}*/
+	}
 }

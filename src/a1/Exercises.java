@@ -49,7 +49,7 @@ public class Exercises {
 		}
 		// calculate the median.
 		if(values.length % 2 ==0)
-			return (values[(values.length+1)/2] + values[(values.length-1)/2])/2;
+			return values[(values.length+1)/2];
 		else 
 			return values[values.length/2];
 	}
@@ -86,7 +86,8 @@ public class Exercises {
 	 * @param values a 2-dimensional integer array, representing a matrix. 
 	 * @return true if all of the values on the diagonal are the same.
 	 */
-	public static boolean hasConstDiagonal(int[ ][ ] values) {
+	public static boolean hasConstDiagonal(int[][] values) {
+		assert(values.length == values[0].length);
 		for (int i = 0; i < values.length; i++) {
 			if(values[i][i]!= values[i][values.length-i-1] || values[i][values.length-i-1] != values[0][0] || values[i][i] != values[0][0])
 				return false;

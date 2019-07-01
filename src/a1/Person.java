@@ -6,7 +6,7 @@ public class Person {
 	// class invariant: non-null and non-empty string
 	private String name;
 	
-	// class invariant: integer that contains a valid year
+	// class invariant: any integer that represents a valid year
 	private int birthYear; 
 	
 	// class invariant: in range [1..12]
@@ -18,10 +18,10 @@ public class Person {
 	// class invariant: integer >=0
 	private int numChildren;
 	
-	// class invariant: a person's mother of type Person
+	// class invariant: a person's mother of type Person, null if unknown
 	private Person mother;
 	
-	// class invariant: a person's father of type Person
+	// class invariant: a person's father of type Person, null if unknown 
 	private Person father;
 	
 	/**
@@ -35,6 +35,8 @@ public class Person {
 	 * */
 	public Person(String name, int birthYear, int birthMonth, int birthDay) {
 		assert(name!=null);
+		assert(birthMonth>=1 && birthMonth<=12);
+		assert(birthDay>=1 && birthDay <=31);
 		this.name = name;
 		this.birthYear = birthYear;
 		this.birthMonth = birthMonth;
@@ -139,5 +141,63 @@ public class Person {
 			this.mother.numChildren--;
 		}
 	}
+	/**
+	 * Change this person’s name
+	 * @param name a String of new name.
+	 */
+	public void setName(String name) {
+		this.name=name;
+	}
+	/**
+	 * Change this person’s birth year to y.
+	 * @param y a integer of new birth year.
+	 */
+	public void setBirthYear(int y) {
+		birthYear=y;
+	}
 	
+	/**
+	 * Change this person’s birth month to m.
+	 * @param m a integer of new birth month.
+	 */
+	public void setBirthMonth(int m) {
+		birthMonth=m;
+	}
+	
+	/**
+	 * Change this person’s birth day to d.
+	 * @param d a integer of new birth day.
+	 */
+	public void setBirthDay(int d) {
+		birthDay=d;
+	}
+	
+	/**
+	 * Find if one is the a half sibling of another. 
+	 * Precondition: requires that other is non-null.
+	 * @param other a Person object one compared with.
+	 * @return true if this and other share a known parent. 
+	 */
+	public boolean isHalfSibling(Person other) {
+		if (other.father()==this.father() || other.father()==this.mother() || 
+			other.mother()== this.mother() || other.mother()== this.father())
+			return true;
+		return false;
+	}
+	
+	/**
+	 * Find if one is older than another.
+	 * Precondition: requires that other is non-null.
+	 * @param other a Person object one compared with.
+	 * @return true if this person’s birthday is before other’s. 
+	 */
+	public boolean isOlderThan(Person other) {
+		if (this.birthYear() != other.birthYear())
+			return this.birthYear() < other.birthYear();
+		if (this.birthMonth() != other.birthMonth())
+			return this.birthMonth() < other.birthMonth();
+		if (this.birthDay()!= other.birthDay())
+			return this.birthDay() < other.birthDay();
+		return false;
+	}
 }
