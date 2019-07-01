@@ -19,10 +19,13 @@ class ExercisesTest {
 		// test for method mean.
 		int[] listA= {3,4,5,6,7,8,2};
 		assertEquals(5.0d, Exercises.mean(listA));
+		int[] listB= {0,1};
+		assertEquals(0.5d, Exercises.mean(listB));
 		System.out.println("Method mean Tested!");
 		
 		// test for method numZeros.
 		assertEquals(0, Exercises.numZeros(listA));
+		assertEquals(1, Exercises.numZeros(listB));
 		System.out.println("Method numZeros Tested!");
 		
 		// test for method median.
