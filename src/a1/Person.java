@@ -116,6 +116,8 @@ public class Person {
 	
 	/**
 	 * checks if previous father and current father are the same person
+	 * updates numChildren of both if they are different fathers
+	 * 
 	 * @param f is a father of type Person
 	 **/
 	public void checkFather(Person f) {
@@ -126,6 +128,8 @@ public class Person {
 	
 	/**
 	 * checks if previous father and current father are the same person
+	 * updates numChildren of both if they are different fathers 
+	 * 
 	 * @param m is a mother of type Person
 	 **/	
 	public void checkMother(Person m) {
