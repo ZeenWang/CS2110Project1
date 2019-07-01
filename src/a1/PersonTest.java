@@ -184,7 +184,7 @@ class PersonTest {
 		martha.setMother(alan);
 		
 		// test for isHalfSibling method.
-	   // add kurt.isHalfSibling(kurt)
+	   	assertEquals(true, bob.isHalfSibling(bob));
 		assertEquals(true, daisy.isHalfSibling(kurt));
 		assertEquals(true, bob.isHalfSibling(kurt));
 		assertEquals(true, martha.isHalfSibling(kurt));
