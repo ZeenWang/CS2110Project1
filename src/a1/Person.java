@@ -34,11 +34,11 @@ public class Person {
 	 * @param birthDay must be in the range 1..31
 	 * */
 	public Person(String name, int birthYear, int birthMonth, int birthDay) {
+		assert(name!=null);
 		this.name = name;
 		this.birthYear = birthYear;
 		this.birthMonth = birthMonth;
 		this.birthDay = birthDay;
-		// unknown parents
 		this.mother = null;
 		this.father = null;
 	}
@@ -81,8 +81,8 @@ public class Person {
 	/**
 	 * changes this person's mother to m 
 	 * if m is null, mother is unknown
-	 * calls a helper function setFather 
 	 * 
+	 * calls a helper function setFather 
 	 * @param m is this person's mother of type of Person
 	 */
 	public void setMother(Person m) {
@@ -90,7 +90,7 @@ public class Person {
 			this.mother = null;
 		} 
 		else {
-			 checkMother(m);
+			checkMother(m);
 			 this.mother = m;
 			 this.mother.numChildren ++;
 		}
@@ -99,8 +99,8 @@ public class Person {
 	/**
 	 * changes this person's father to f
 	 * if f is null, father is unknown 
-	 * calls a helper function setMother
 	 * 
+	 * calls a helper function setMother
 	 * @param f is this person's father of type Person
 	 * */
 	public void setFather(Person f) {
@@ -114,22 +114,23 @@ public class Person {
 		}
 	}
 	
-	public void checkMother(Person m) {
-		if(this.mother!=null && this.mother!=m) {
-			this.mother.numChildren--;
-		}
-	}
-	
 	/**
 	 * checks if previous father and current father are the same person
-	 * if current father is not null or the same as the new father 
-	 * the person's father will update
-	 * 
 	 * @param f is a father of type Person
 	 **/
 	public void checkFather(Person f) {
 		if (this.father!=null && this.father!=f) {
 			this.father.numChildren--;
+		}
+	}
+	
+	/**
+	 * checks if previous father and current father are the same person
+	 * @param m is a mother of type Person
+	 **/	
+	public void checkMother(Person m) {
+		if (this.mother!=null && this.mother!=m) {
+			this.mother.numChildren--;
 		}
 	}
 	
