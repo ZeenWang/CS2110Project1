@@ -195,6 +195,8 @@ class PersonTest {
 		assertEquals(true, bob.isHalfSibling(kurt));
 		assertEquals(true, daisy.isHalfSibling(kurt));
 		assertEquals(false, daisy.isHalfSibling(alan));
+		// same person
+		assertEquals(true, bob.isHalfSibling(bob));
 		
 		
 		System.out.println("Comparisons tests passed!");
