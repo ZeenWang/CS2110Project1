@@ -1,6 +1,8 @@
 package a1;
 
 /** an instance of a person */
+// Kurt Chua and Zeen Wang
+
 public class Person {
 	
 	// class invariant: non-null and non-empty string
