@@ -28,16 +28,10 @@ public class Discuss3 {
 
         // TODO: throw RuntimeException according to the method spec
     	
-    	if (c.length == 0) {
+    	if (n-m <=0) {
     		throw new RuntimeException("min of 0 values doesn't exist if c[m..n) is empty.");
     	}
     	
-    	try {
-    		int y = 5/(n-m);
-    		
-    	}catch (RuntimeException e){
-    		System.out.println("the upper bound and lower bound cannot be the same value");
-    	}
     	
         int min= c[m];
         for (int k= m+1; k <= n; k= k+1) {
@@ -53,11 +47,24 @@ public class Discuss3 {
      */
     public static void main(String[] args) {
         int[] b= {5, 3, 8, 2, 6};
-        System.out.println(min(b, 1, 0));
-        System.out.println(min(b, 1, 3));
-        System.out.println(min(b, 1, 1));
+        
+       
+    	try {
+    		System.out.println(min(b, 1, 0));
+    		System.out.println(min(b, 1, 3));
+    		System.out.println(min(b, 1, 1));
+    		System.out.println("all passed!");
+    	} catch(RuntimeException e){
+    		System.out.println("Caught RuntimeException: update the upper bound "
+       	   		+ "so that it is greater than the lower bound");   
+        }
+    	
 
-      //  printProduct();
+    	System.out.println(min(b, 1, 0));
+		System.out.println(min(b, 1, 3));
+		System.out.println(min(b, 1, 1));
+     
+		//  printProduct();
     }
 
     /** Do this over and over, until the user types "DONE" instead of a first integer:
