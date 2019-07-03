@@ -5,6 +5,6 @@ Throwable
 	Exception
 	  	NullPointerException 
 	  	RuntimeException
-	        ArithmeticException
+			ArithmeticException
 			IllegalArgumentException
 
