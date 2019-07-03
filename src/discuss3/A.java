@@ -23,7 +23,7 @@ public class A {
 	
 	public static void main(String[] args) {
 		p(-2); // passes
-		p(0); // throws new ArithmeticException
+	//	p(0); // throws new ArithmeticException
 		
 	}
 

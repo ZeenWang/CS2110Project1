@@ -1,3 +1,4 @@
+1.
 Throwable
 	Error
 	  	AssertionError
@@ -8,4 +9,23 @@ Throwable
 	  	RuntimeException
 			ArithmeticException
 			IllegalArgumentException
+
+2.
+(a)
+six
+four
+three
+two
+
+ArithmeticException: /by zero
+
+(b)
+six
+five
+four
+three
+two
+one
+
+
 

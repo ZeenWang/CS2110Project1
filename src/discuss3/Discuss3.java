@@ -48,50 +48,47 @@ public class Discuss3 {
      */
     public static void main(String[] args) {
         int[] b= {5, 3, 8, 2, 6};
-     	
-        
-    	
-    	
+     
     	try {
     		System.out.println(min(b, 1, 0));
-    		
-        }catch(RuntimeException e){
+        } catch(RuntimeException e){
         	System.out.println("Caught RuntimeException: update the upper bound "
 				+ "so that it is greater than the lower bound");   
         }
-    	
     	try {
-    		System.out.println(min(b, 1, 3));
-    		
-        }catch(RuntimeException e){
+    		System.out.println(min(b, 1, 3));	
+        } catch(RuntimeException e){
         	System.out.println("Caught RuntimeException: update the upper bound "
 				+ "so that it is greater than the lower bound");   
         }
-    	
     	try {
-    		System.out.println(min(b, 1, 1));
-    		
-        }catch(RuntimeException e){
+    		System.out.println(min(b, 1, 1));	
+        } catch(RuntimeException e){
         	System.out.println("Caught RuntimeException: update the upper bound "
 				+ "so that it is greater than the lower bound");   
         }
     
     	
-		//  printProduct();
+		// printProd();
     }
 
     /** Do this over and over, until the user types "DONE" instead of a first integer:
      *  Read two integers from the keyboard and print their product. If the
      *  reader types anything but an integer, use the integer 1. */
     public static void printProd() throws IOException {
-        BufferedReader reader= new BufferedReader(new InputStreamReader(System.in));
-
+       
+    	BufferedReader reader= new BufferedReader(new InputStreamReader(System.in));
+        try {
         while (true) {
+     
             System.out.println("Enter a number: ");
             String s;
-
+            
+           
             // Read a line from the keyboard, trim it, and store the result in s;
             s = reader.readLine().trim();
+            int numRep = Integer.parseInt(s);
+           
             if (s.equals("DONE"))
                 return;
 
@@ -109,5 +106,35 @@ public class Discuss3 {
 
             System.out.println("Product: " + a*b);
         }
+        }catch (IOException e){
+        	System.out.println("input is not an integer and was assigned to 1");
+        	while (true) {
+        	     
+                System.out.println("Enter a number: ");
+                String s;
+                
+               
+                // Read a line from the keyboard, trim it, and store the result in s;
+                s = "1";
+               
+                if (s.equals("DONE"))
+                    return;
+
+                int a;
+                a = Integer.parseInt(s);
+
+
+                System.out.println("Enter another number: ");
+
+                // Read a line from the keyboard and store it in s;
+                s = reader.readLine().trim();
+
+                int b;
+                b= Integer.parseInt(s);
+
+                System.out.println("Product: " + a*b);
+        	
+        }
     }
 }
+    }
