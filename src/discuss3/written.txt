@@ -27,5 +27,8 @@ three
 two
 one
 
+6.
+(b) void f() throws E1 {} where E1 is a subtype of E
+(d) void f() throws E1, E2 {} where E1 is a subtype of E and E2 is an unrelated exception type 
 
 
