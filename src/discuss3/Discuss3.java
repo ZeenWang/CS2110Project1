@@ -28,15 +28,10 @@ public class Discuss3 {
 
         // TODO: throw RuntimeException according to the method spec
     	
-    	try {
+    	
     	if (n-m <=0) {
     		throw new RuntimeException("min of 0 values doesn't exist if c[m..n) is empty.");
     	 }
-    	}catch(RuntimeException e){
-    		System.out.println("Caught RuntimeException: update the upper bound "
-           	   		+ "so that it is greater than the lower bound");   
-        }
-        	
     	
     	
         int min= c[m];
@@ -53,14 +48,35 @@ public class Discuss3 {
      */
     public static void main(String[] args) {
         int[] b= {5, 3, 8, 2, 6};
+     	
         
-       
     	
-
-    	System.out.println(min(b, 1, 0));
-		System.out.println(min(b, 1, 3));
-		System.out.println(min(b, 1, 1));
-     
+    	
+    	try {
+    		System.out.println(min(b, 1, 0));
+    		
+        }catch(RuntimeException e){
+        	System.out.println("Caught RuntimeException: update the upper bound "
+				+ "so that it is greater than the lower bound");   
+        }
+    	
+    	try {
+    		System.out.println(min(b, 1, 3));
+    		
+        }catch(RuntimeException e){
+        	System.out.println("Caught RuntimeException: update the upper bound "
+				+ "so that it is greater than the lower bound");   
+        }
+    	
+    	try {
+    		System.out.println(min(b, 1, 1));
+    		
+        }catch(RuntimeException e){
+        	System.out.println("Caught RuntimeException: update the upper bound "
+				+ "so that it is greater than the lower bound");   
+        }
+    
+    	
 		//  printProduct();
     }
 
