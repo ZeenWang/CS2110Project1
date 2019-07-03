@@ -1,0 +1,10 @@
+Throwable
+	Error
+	  	AssertionError
+	 	IOError
+    Exception
+	  	NullPointerException 
+	  	RuntimeException
+	        ArithmeticException
+			IllegalArgumentException
+
