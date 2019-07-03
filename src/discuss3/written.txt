@@ -2,7 +2,7 @@ Throwable
 	Error
 	  	AssertionError
 	 	IOError
-    Exception
+	Exception
 	  	NullPointerException 
 	  	RuntimeException
 	        ArithmeticException
