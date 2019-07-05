@@ -45,8 +45,9 @@ public class Discuss3 {
      * calls min three times and then calls printProduct.  If any of these
      * methods throws an exception, print an error message (but still execute
      * the remaining methods).
+     * @throws IOException 
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         int[] b= {5, 3, 8, 2, 6};
      
     	try {
@@ -69,7 +70,7 @@ public class Discuss3 {
         }
     
     	
-		// printProd();
+		 printProd();
     }
 
     /** Do this over and over, until the user types "DONE" instead of a first integer:
@@ -78,63 +79,36 @@ public class Discuss3 {
     public static void printProd() throws IOException {
        
     	BufferedReader reader= new BufferedReader(new InputStreamReader(System.in));
-        try {
-        while (true) {
-     
-            System.out.println("Enter a number: ");
-            String s;
-            
-           
-            // Read a line from the keyboard, trim it, and store the result in s;
-            s = reader.readLine().trim();
-            int numRep = Integer.parseInt(s);
-           
-            if (s.equals("DONE"))
-                return;
+    	  while (true) {
+              System.out.println("Enter a number: ");
+              String s;
 
-            int a;
-            a = Integer.parseInt(s);
+              // Read a line from the keyboard, trim it, and store the result in s;
+              s = reader.readLine().trim();
+              if (s.equals("DONE"))
+                  return;
 
+              int a;
+              try {
+  				a = Integer.parseInt(s);
+  			} catch (NumberFormatException e) {
+  				a=1;
+  			}
 
-            System.out.println("Enter another number: ");
+              
+              System.out.println("Enter another number: ");
 
-            // Read a line from the keyboard and store it in s;
-            s = reader.readLine().trim();
+              // Read a line from the keyboard and store it in s;
+              s = reader.readLine().trim();
 
-            int b;
-            b= Integer.parseInt(s);
+              int b;
+              try {
+  				b= Integer.parseInt(s);
+  			} catch (NumberFormatException e) {
+  				b=1;
+  			}
 
-            System.out.println("Product: " + a*b);
-        }
-        }catch (IOException e){
-        	System.out.println("input is not an integer and was assigned to 1");
-        	while (true) {
-        	     
-                System.out.println("Enter a number: ");
-                String s;
-                
-               
-                // Read a line from the keyboard, trim it, and store the result in s;
-                s = "1";
-               
-                if (s.equals("DONE"))
-                    return;
+              System.out.println("Product: " + a*b);
+              
+          }}  }
 
-                int a;
-                a = Integer.parseInt(s);
-
-
-                System.out.println("Enter another number: ");
-
-                // Read a line from the keyboard and store it in s;
-                s = reader.readLine().trim();
-
-                int b;
-                b= Integer.parseInt(s);
-
-                System.out.println("Product: " + a*b);
-        	
-        }
-    }
-}
-    }
