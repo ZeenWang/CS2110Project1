@@ -24,7 +24,7 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
     public DLinkedList() {
         // TODO item #1
         // Look at the class invariant to determine how to implement this.
-        throw new NotImplementedError();
+        DLinkedList a = new DLinkedList<E>();
     }
 
     /**
