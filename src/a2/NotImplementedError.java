@@ -1,5 +1,5 @@
 package a2;
 
-public class NotImplementedError extends Exception {
+public class NotImplementedError extends Error {
 
 }

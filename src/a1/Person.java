@@ -49,7 +49,8 @@ public class Person {
 	
 	/** returns this person's name */
 	public String name() {
-		return name;
+		throw new NotImplementedError();
+	
 	}
 	
 	/** returns this person's mother */

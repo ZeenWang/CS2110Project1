@@ -22,10 +22,9 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
     
     /** Constructor: an empty linked list. */
     public DLinkedList() {
+        // TODO item #1
         // Look at the class invariant to determine how to implement this.
-       head = null;
-       tail = null;
-        
+        throw new NotImplementedError();
     }
 
     /**
@@ -33,9 +32,9 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
      * This operation must take constant time.
      */
     public @Override int size() {
-        // This is ans extremely small method
-       
-    	return size;
+        // TODO item #2
+        // This is an extremely small method
+        throw new NotImplementedError();
     }
 
     /**
