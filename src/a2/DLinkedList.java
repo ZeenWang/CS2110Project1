@@ -22,9 +22,10 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
     
     /** Constructor: an empty linked list. */
     public DLinkedList() {
-        // TODO item #1
         // Look at the class invariant to determine how to implement this.
-        throw new NotImplementedError();
+    	this.head = null;
+    	this.tail = null;
+    	this.size = 0;
     }
 
     /**
@@ -32,9 +33,8 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
      * This operation must take constant time.
      */
     public @Override int size() {
-        // TODO item #2
         // This is an extremely small method
-        throw new NotImplementedError();
+        return size;
     }
 
     /**
@@ -63,10 +63,17 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
      * For example, if this contains 6 3 8 in that order, the result is "[8, 3, 6]".
      */
     public String toStringRev() {
-        // TODO item #3
         // This should use field tail and the pred fields in nodes.
         // Do NOT use field size.
-        throw new NotImplementedError();
+       String res = "[";
+    	for (Node n = tail; n!=null; n=n.pred) {
+    		if(n!=tail)
+    			res = res+ ", ";
+    		res = res+n.data;
+    		
+    	}
+    	
+    	return res + "]";
     }
     
     /**
@@ -74,9 +81,15 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
      * This operation must take constant time.
      */
     private Node append(E element) {
-        // TODO item #4
         // This mid-size helper function will be used by other methods
-        throw new NotImplementedError();
+    	
+    	Node newNode = null;
+    	tail.succ = newNode;
+    	newNode.pred = tail;
+    	this.tail = newNode;
+    	newNode.data = element;
+    	
+    	return newNode;
     }
     
     /** Append element to the end of this list and return true. */
