@@ -6,19 +6,21 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import junit.framework.AssertionFailedError;
+
 /**
  * An instance is a doubly linked list. It provides much of the functionality
  * of Java class java.util.LinkedList.
  */
 public class DLinkedList<E> extends java.util.AbstractList<E> {
     /** Number of nodes in the linked list. */
-    public int size;
+    private int size;
 
     /** first node of the linked list (null if the list is empty) */
-    public Node head;
+    private Node head;
 
     /** last  node of the linked list (null if the list is empty) */
-    public Node tail;
+    private Node tail;
     
     /** Constructor: an empty linked list. */
     public DLinkedList() {
@@ -124,7 +126,23 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
         // Note that there are two ways to get to a node: from the head or from the tail.
         // This MUST use the fastest way for index.
         // (If h is exactly the middle, then either way is ok.)
-        throw new NotImplementedError();
+    		if(index <= size/2) {
+    			int i = 0;
+    			Node nodeNow = head;
+    			while(i< index) {
+    				nodeNow = nodeNow.succ;
+    				i++;
+    			}
+    			return nodeNow;
+    		} else {
+    			int i = 0;
+    			Node nodeNow = tail;
+    			while(i>index) {
+    				nodeNow = tail.pred;
+    				i--;
+    			}
+    			return nodeNow;
+    		}
     }
     
     /**
@@ -272,9 +290,23 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
          * @throws AssertionFailedError if the list is not well-formed
          */
         private static void assertInvariants(DLinkedList<?> list) {
-            throw new NotImplementedError();
+            try{
+            assertEquals(list.getNode(0), list.head);
+            assertEquals(list.getNode(list.size-1),list.tail);
+            assertEquals(list.size(), list.size);
+            }catch(AssertionFailedError e) {
+            	throw new AssertionFailedError("list is not well-formed");
+            }
+       
         }
-
+        
+        @Test
+        public void testConstructor() {
+        	DLinkedList<Integer> intList = new DLinkedList<Integer>();
+        	assertInvariants(intList);
+        	
+        	
+        }
         @Test
         public void testAppend() {
             DLinkedList<String> ll     = new DLinkedList<String>();
