@@ -304,7 +304,14 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
         public void testConstructor() {
         	DLinkedList<Integer> intList = new DLinkedList<Integer>();
         	assertInvariants(intList);
-        	
+        	intList.append(2);
+        	assertInvariants(intList);
+        	intList.append(50);
+        	intList.append(222);
+        	intList.append(456);
+        	intList.append(10000);
+        	intList.append(2);
+        	assertInvariants(intList);
         	
         }
         @Test
