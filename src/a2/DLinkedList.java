@@ -12,13 +12,13 @@ import org.junit.jupiter.api.Test;
  */
 public class DLinkedList<E> extends java.util.AbstractList<E> {
     /** Number of nodes in the linked list. */
-    private int size;
+    public int size;
 
     /** first node of the linked list (null if the list is empty) */
-    private Node head;
+    public Node head;
 
     /** last  node of the linked list (null if the list is empty) */
-    private Node tail;
+    public Node tail;
     
     /** Constructor: an empty linked list. */
     public DLinkedList() {
@@ -83,13 +83,20 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
     private Node append(E element) {
         // This mid-size helper function will be used by other methods
     	
-    	Node newNode = null;
-    	tail.succ = newNode;
-    	newNode.pred = tail;
-    	this.tail = newNode;
-    	newNode.data = element;
-    	
-    	return newNode;
+    	if (size == 0) {
+    		Node newNode = new Node(null,element,null);
+    		head = newNode;
+    		tail = head;
+    		size++;
+    		return newNode;
+    	}else {
+    		Node newNode = new Node(tail, element, null);
+    		tail.succ = newNode;
+    		tail = newNode;
+    		size++;
+    		return newNode;
+    	}
+   	    	
     }
     
     /** Append element to the end of this list and return true. */
@@ -98,7 +105,8 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
         // Rely on helper methods to keep this method small
         // This is THE MOST IMPORTANT method to get right because it will be used
         // in nearly every test
-        throw new NotImplementedError();
+        append(element);
+        return (tail.data == element);
     }
     
     /**
