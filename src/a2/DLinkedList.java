@@ -480,40 +480,37 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
             
             System.out.println("append method tests passed!");
         }
-
-        
         
         @Test
         public void testAdd() {
         	DLinkedList<String> strList = new DLinkedList<String>();
-        	strList.add("kurt");
-        	strList.add("chua");
-        	strList.add("zeen");
-        	strList.add("wang");
-        	strList.add("bob");
-        	strList.add("cornell");
-        	strList.add("ezra");
-        	strList.add("andrew");
-        	strList.add("mary");
-        	strList.add("nancy");
-        	strList.add("mark");
         	
+        	// add method checks
+        	strList.add("kurt");
+        	assertEquals(true,strList.tail.data=="kurt");
+        	strList.add("chua");
+        	assertEquals(true,strList.tail.data=="chua");
+        	strList.add("zeen");
+        	assertEquals(true,strList.tail.data=="zeen");
+        	strList.add("wang");
+        	assertEquals(true,strList.tail.data=="wang");
+        	strList.add("bob");
+        	assertEquals(true,strList.tail.data=="bob");
+        	strList.add("cornell");
+        	assertEquals(true,strList.tail.data=="cornell");
+        	strList.add("ezra");
+        	assertEquals(true,strList.tail.data=="ezra");
+        	strList.add("andrew");
+        	assertEquals(true,strList.tail.data=="andrew");
+        	strList.add("mary");
+        	assertEquals(true,strList.tail.data=="mary");
+        	strList.add("nancy");
+        	assertEquals(true,strList.tail.data=="nancy");
+        	strList.add("mark");
+        	assertEquals(true,strList.tail.data=="mark");     	
         	assertInvariants(strList);
         	
-        	System.out.println(strList.toString());
-        	System.out.println(strList.toStringRev());
-        	
-        	assertEquals("kurt",strList.getNode(0).data);
-        	assertEquals("chua",strList.getNode(1).data);
-        	assertEquals("zeen",strList.getNode(2).data);
-        	assertEquals("wang",strList.getNode(3).data);
-        	assertEquals("bob",strList.getNode(4).data);
-        	assertEquals("cornell",strList.getNode(5).data);
-        	assertEquals("ezra",strList.getNode(6).data);
-        	assertEquals("andrew",strList.getNode(7).data);
-        	assertEquals("mary",strList.getNode(8).data);
-        	assertEquals("nancy",strList.getNode(9).data);
-        	
+        	System.out.println("add method tests passed!");		   
         }
         
         @Test
