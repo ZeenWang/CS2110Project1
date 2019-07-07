@@ -489,6 +489,7 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
         	strList.add("kurt");
         	assertEquals(true,strList.tail.data=="kurt");
         	strList.add("chua");
+        	assertEquals(false,strList.tail.data=="kurt"); 
         	assertEquals(true,strList.tail.data=="chua");
         	strList.add("zeen");
         	assertEquals(true,strList.tail.data=="zeen");
@@ -507,10 +508,34 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
         	strList.add("nancy");
         	assertEquals(true,strList.tail.data=="nancy");
         	strList.add("mark");
-        	assertEquals(true,strList.tail.data=="mark");     	
+        	assertEquals(true,strList.tail.data=="mark");    
+        	assertEquals(false,strList.tail.data=="kurt"); 
+        	assertEquals(false,strList.tail.data=="nancy"); 
         	assertInvariants(strList);
         	
         	System.out.println("add method tests passed!");		   
+        }
+        
+        @Test
+        public void testGetNode() {
+        	DLinkedList<Integer> intList  = new DLinkedList<Integer>();
+        	DLinkedList<Integer>.Node n = intList.append(0);
+        	DLinkedList<Integer>.Node n1 = intList.append(1);
+        	DLinkedList<Integer>.Node n2 = intList.append(2);
+        	DLinkedList<Integer>.Node n3 = intList.append(3);
+        	DLinkedList<Integer>.Node n4 = intList.append(4);
+        	DLinkedList<Integer>.Node n5 = intList.append(5);
+        	
+          	
+        	// tests for getNode method
+        	assertEquals(n, intList.getNode(0));
+        	assertEquals(n1, intList.getNode(1));
+        	assertEquals(n2, intList.getNode(2));
+        	assertEquals(n3, intList.getNode(3));
+        	assertEquals(n4, intList.getNode(4));
+        	assertEquals(n5, intList.getNode(5));
+        	
+        	System.out.println("getNode method tests passed!");
         }
         
         @Test
