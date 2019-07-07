@@ -155,9 +155,7 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
      *              0 is the first element, 1 is the second, etc.
      * @throws IndexOutOfBoundsException if index is not in [0..size)
      */
-    public @Override E get(int index) {
-        // TODO item #7
-        // Rely on helper methods to keep this method small.
+    public @Override E get(int index) {        // Rely on helper methods to keep this method small.
         // Note that the helper method could throw the exception; doesn't
         // have to be done here.
         
@@ -179,7 +177,12 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
         // Rely on helper methods to keep this method small.
         // Note that a helper method could throw the exception; doesn't
         // have to be done here.
-        throw new NotImplementedError();
+     if(index<0 || index>=size) {
+    	 throw new IndexOutOfBoundsException("index is not in [0..size)");
+     }
+     E oldVal = get(index);
+     getNode(index).data= element;
+     return oldVal;
     }
     
     /**
@@ -190,7 +193,18 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
     private Node prepend(E element) {
         // TODO item #9
         // This mid-size helper function will be used by other methods
-        throw new NotImplementedError();
+        if (size==0) {
+        	Node newNode = new Node(null,element,null);
+        	head = newNode;
+        	size++;
+        	return newNode;
+        }else {
+        	Node newNode = new Node(null,element,head);
+        	head.pred = newNode;
+        	head = newNode;
+        	size++;
+        	return newNode;
+        }
     }
     
     /**
@@ -308,7 +322,6 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
         	DLinkedList<Integer> intList = new DLinkedList<Integer>();
         	assertInvariants(intList);
         	intList.append(2);
-        	assertInvariants(intList);
         	intList.append(50);
         	intList.append(222);
         	intList.append(456);
@@ -332,6 +345,8 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
         	strList.add("mary");
         	strList.add("nancy");
         	strList.add("mark");
+        	
+        	assertInvariants(strList);
         	
         	System.out.println(strList.toString());
         	System.out.println(strList.toStringRev());
@@ -363,6 +378,8 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
         	strList.add("mary");
         	strList.add("nancy");
         	strList.add("mark");
+        	
+        	assertInvariants(strList);
         	
         	assertEquals("kurt",strList.get(0));
         	assertEquals("chua",strList.get(1));
@@ -408,5 +425,68 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
         public void testToStringRev() {
      
         }
+        
+        @Test
+        public void testSet() {
+        	DLinkedList<Integer> intList = new DLinkedList<Integer>();
+        	assertInvariants(intList);
+        	intList.add(0);
+        	intList.add(1);
+        	intList.add(2);
+        	intList.add(3);
+        	intList.add(4);
+        	intList.add(5);
+        	intList.add(6);
+        	intList.add(7);
+        	intList.add(8);
+        	intList.add(9);
+        	intList.add(10);
+        	
+        	assertInvariants(intList);
+        	
+
+        	assertEquals(0, intList.get(0));
+        	assertEquals(1, intList.get(1));
+        	assertEquals(2, intList.get(2));
+        	assertEquals(3, intList.get(3));
+        	assertEquals(4, intList.get(4));
+        	assertEquals(5, intList.get(5));
+        	assertEquals(6, intList.get(6));
+        	assertEquals(7, intList.get(7));
+        	assertEquals(8, intList.get(8));
+        	assertEquals(9, intList.get(9));
+        	assertEquals(10, intList.get(10));
+        	
+        	assertEquals(0,intList.set(0, 10));
+        	assertEquals(1,intList.set(1, 9));
+        	assertEquals(2,intList.set(2, 8));
+        	assertEquals(3,intList.set(3, 7));
+        	assertEquals(4,intList.set(4, 6));
+        	assertEquals(5,intList.set(5, 5));
+        	assertEquals(6,intList.set(6, 4));
+        	assertEquals(7,intList.set(7, 3));
+        	assertEquals(8,intList.set(8, 2));
+        	assertEquals(9,intList.set(9, 1));
+        	assertEquals(10,intList.set(10, 0));
+        	
+        	assertInvariants(intList);
+        	
+        	assertEquals(10, intList.get(0));
+        	assertEquals(9, intList.get(1));
+        	assertEquals(8, intList.get(2));
+        	assertEquals(7, intList.get(3));
+        	assertEquals(6, intList.get(4));
+        	assertEquals(5, intList.get(5));
+        	assertEquals(4, intList.get(6));
+        	assertEquals(3, intList.get(7));
+        	assertEquals(2, intList.get(8));
+        	assertEquals(1, intList.get(9));
+        	assertEquals(0, intList.get(10));
+        }
+        
+       @Test
+       public void testPrepend() {
+    	   
+       }
     }
 }
