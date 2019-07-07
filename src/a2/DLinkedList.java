@@ -533,6 +533,17 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
 	       intList.add(8);
 	       intList.add(9);
 	       intList.add(10);
+	       System.out.println(intList);
+	       intList.insertBefore(-2, intList.getNode(0));
+	       intList.insertBefore(-3, intList.getNode(0));
+	       intList.insertBefore(-4, intList.getNode(0));
+	       intList.insertBefore(-5, intList.getNode(0));
+	       intList.insertBefore(-6, intList.getNode(0));
+	       intList.insertBefore(-7, intList.getNode(0));
+	       intList.insertBefore(-8, intList.getNode(0));
+	       intList.insertBefore(-9, intList.getNode(0));
+	       intList.insertBefore(-10, intList.getNode(0));
+	       System.out.println(intList);
 	     
 	       assertInvariants(intList);
     	   
