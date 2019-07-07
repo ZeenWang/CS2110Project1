@@ -137,7 +137,7 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
     		} else {
     			int i = size-1;
     			Node nodeNow = tail;
-    			while(i!=index) {
+    			while(i>index) {
     				nodeNow = nodeNow.pred;
     				i--;
     			}
@@ -328,6 +328,7 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
         	strList.add("andrew");
         	strList.add("mary");
         	strList.add("nancy");
+        	strList.add("mark");
         	
         	System.out.println(strList.toString());
         	System.out.println(strList.toStringRev());
