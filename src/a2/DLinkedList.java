@@ -555,6 +555,7 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
         	
         	assertInvariants(strList);
         	
+        	// tests for get method
         	assertEquals("kurt",strList.get(0));
         	assertEquals("chua",strList.get(1));
         	assertEquals("zeen",strList.get(2));
@@ -566,6 +567,48 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
         	assertEquals("mary",strList.get(8));
         	assertEquals("nancy",strList.get(9));
         	
+        	System.out.println("get method tests passed!");	
+        }
+        
+        
+        @Test
+        public void testSet() {
+        	DLinkedList<Integer> intList = new DLinkedList<Integer>();
+        	assertInvariants(intList);
+        	intList.add(0);
+        	intList.add(1);
+        	intList.add(2);
+        	intList.add(3);
+        	intList.add(4);
+        	intList.add(5);
+        	intList.add(6);
+        	intList.add(7);
+        	intList.add(8);
+        	intList.add(9);
+        	intList.add(10);
+        	
+        	assertEquals("[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]",intList.toString());
+        	
+        	assertInvariants(intList);
+        	
+        	// tests for set method
+        	assertEquals(0,intList.set(0, 10));
+        	assertEquals(1,intList.set(1, 9));
+        	assertEquals(2,intList.set(2, 8));
+        	assertEquals(3,intList.set(3, 7));
+        	assertEquals(4,intList.set(4, 6));
+        	assertEquals(5,intList.set(5, 5));
+        	assertEquals(6,intList.set(6, 4));
+        	assertEquals(7,intList.set(7, 3));
+        	assertEquals(8,intList.set(8, 2));
+        	assertEquals(9,intList.set(9, 1));
+        	assertEquals(10,intList.set(10, 0));
+        	
+        	assertInvariants(intList);
+        	
+        	assertEquals("[10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]",intList.toString());
+        	
+        	System.out.println("set method tests passed!");
         }
         
         
@@ -586,64 +629,7 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
             
         }
      
-        
-        @Test
-        public void testSet() {
-        	DLinkedList<Integer> intList = new DLinkedList<Integer>();
-        	assertInvariants(intList);
-        	intList.add(0);
-        	intList.add(1);
-        	intList.add(2);
-        	intList.add(3);
-        	intList.add(4);
-        	intList.add(5);
-        	intList.add(6);
-        	intList.add(7);
-        	intList.add(8);
-        	intList.add(9);
-        	intList.add(10);
-        	
-        	assertInvariants(intList);
-        	
-        	assertEquals(0, intList.get(0));
-        	assertEquals(1, intList.get(1));
-        	assertEquals(2, intList.get(2));
-        	assertEquals(3, intList.get(3));
-        	assertEquals(4, intList.get(4));
-        	assertEquals(5, intList.get(5));
-        	assertEquals(6, intList.get(6));
-        	assertEquals(7, intList.get(7));
-        	assertEquals(8, intList.get(8));
-        	assertEquals(9, intList.get(9));
-        	assertEquals(10, intList.get(10));
-        	
-        	assertEquals(0,intList.set(0, 10));
-        	assertEquals(1,intList.set(1, 9));
-        	assertEquals(2,intList.set(2, 8));
-        	assertEquals(3,intList.set(3, 7));
-        	assertEquals(4,intList.set(4, 6));
-        	assertEquals(5,intList.set(5, 5));
-        	assertEquals(6,intList.set(6, 4));
-        	assertEquals(7,intList.set(7, 3));
-        	assertEquals(8,intList.set(8, 2));
-        	assertEquals(9,intList.set(9, 1));
-        	assertEquals(10,intList.set(10, 0));
-        	
-        	assertInvariants(intList);
-        	
-        	assertEquals(10, intList.get(0));
-        	assertEquals(9, intList.get(1));
-        	assertEquals(8, intList.get(2));
-        	assertEquals(7, intList.get(3));
-        	assertEquals(6, intList.get(4));
-        	assertEquals(5, intList.get(5));
-        	assertEquals(4, intList.get(6));
-        	assertEquals(3, intList.get(7));
-        	assertEquals(2, intList.get(8));
-        	assertEquals(1, intList.get(9));
-        	assertEquals(0, intList.get(10));
-        }
-        
+       
        @Test
        public void testPrepend() {
     	   DLinkedList<String> strList = new DLinkedList<String>();
