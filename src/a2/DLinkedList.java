@@ -260,7 +260,27 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
     private E removeNode(Node n) {
         // TODO item #12
         // This is a large helper method
-        throw new NotImplementedError();
+         if(n==head) {
+        	 head.succ = head;
+        	 head.pred = null;
+        	 return n.data;
+         }
+         
+         if(n==tail) {
+        	 tail.pred = tail;
+        	 tail.succ = null;
+        	 return n.data;
+         }else {
+        	 Node nextNode = n.succ;
+        	 Node predNode = n.pred;
+        	 n.succ = null;
+        	 n.pred = null;
+        	 predNode.succ = nextNode;
+        	 nextNode.pred = predNode;
+        	 return n.data;
+         }
+         
+         
     }
     
     /**
