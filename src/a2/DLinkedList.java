@@ -135,11 +135,11 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
     			}
     			return nodeNow;
     		} else {
-    			int i = size;
+    			int i = size-1;
     			Node nodeNow = tail;
-    			while(i> index) {
-    				nodeNow = tail.pred;
-    				i= i-1;
+    			while(i!=index) {
+    				nodeNow = nodeNow.pred;
+    				i--;
     			}
     			return nodeNow;
     		}
