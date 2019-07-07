@@ -220,7 +220,14 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
         // This mid-size helper function will be used by other methods.
         // Do NOT test whether node is actually a Node of this list because
         // it will then not be a constant-time operation.
-        throw new NotImplementedError();
+        if (node==head) {
+        	return prepend(element);
+        }
+        Node prevNode = node.pred;
+        Node newNode = new Node(prevNode,element,node);
+        prevNode.succ = newNode;
+        node.pred = newNode;
+        return newNode;
     }
     
     /**
@@ -508,7 +515,26 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
            assertEquals("first",strList.get(0));
     	   
            System.out.println(strList.toString());
-    	   
+       }
+       @Test
+       public void testInsertBefore() {
+    	   DLinkedList<Integer> intList = new DLinkedList<Integer>();
+    	   intList.add(0);
+    	   System.out.println(intList);
+    	   intList.insertBefore(-1, intList.getNode(0));
+    	   System.out.println(intList);
+    	   intList.add(1);
+	       intList.add(2);
+	       intList.add(3);
+	       intList.add(4);
+	       intList.add(5);
+	       intList.add(6);
+	       intList.add(7);
+	       intList.add(8);
+	       intList.add(9);
+	       intList.add(10);
+	     
+	       assertInvariants(intList);
     	   
        }
     }
