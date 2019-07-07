@@ -148,7 +148,7 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
     }
     
     /**
-     * Return the Node at the given index of this list.
+     * Return the element at the given index of this list.
      * Takes time proportional to min(index, size - index).
      *
      * @param index the index of the node, in [0..size).
@@ -160,7 +160,8 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
         // Rely on helper methods to keep this method small.
         // Note that the helper method could throw the exception; doesn't
         // have to be done here.
-        throw new NotImplementedError();
+        
+    	return getNode(index).data;
     }
     
     /**
