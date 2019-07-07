@@ -135,11 +135,11 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
     			}
     			return nodeNow;
     		} else {
-    			int i = 0;
+    			int i = size;
     			Node nodeNow = tail;
-    			while(i>index) {
+    			while(i> index) {
     				nodeNow = tail.pred;
-    				i--;
+    				i= i-1;
     			}
     			return nodeNow;
     		}
@@ -314,6 +314,39 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
         	assertInvariants(intList);
         	
         }
+        
+        @Test
+        public void testAdd() {
+        	DLinkedList<String> strList = new DLinkedList<String>();
+        	strList.add("kurt");
+        	strList.add("chua");
+        	strList.add("zeen");
+        	strList.add("wang");
+        	strList.add("bob");
+        	strList.add("cornell");
+        	strList.add("ezra");
+        	strList.add("andrew");
+        	strList.add("mary");
+        	strList.add("nancy");
+        	
+        	System.out.println(strList.toString());
+        	System.out.println(strList.toStringRev());
+        	
+        	assertEquals("kurt",strList.getNode(0).data);
+        	assertEquals("chua",strList.getNode(1).data);
+        	assertEquals("zeen",strList.getNode(2).data);
+        	assertEquals("wang",strList.getNode(3).data);
+        	assertEquals("bob",strList.getNode(4).data);
+        	assertEquals("cornell",strList.getNode(5).data);
+        	assertEquals("ezra",strList.getNode(6).data);
+        	assertEquals("andrew",strList.getNode(7).data);
+        	assertEquals("mary",strList.getNode(8).data);
+        	assertEquals("nancy",strList.getNode(9).data);
+        	
+        	
+        	
+        	
+        }
         @Test
         public void testAppend() {
             DLinkedList<String> ll     = new DLinkedList<String>();
@@ -337,6 +370,12 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
             
             dll.add(4); ll.add(4);
             assertEquals(dll.toString(), ll.toString());
+            
+        }
+        
+        @Test
+        public void testToStringRev() {
+     
         }
     }
 }
