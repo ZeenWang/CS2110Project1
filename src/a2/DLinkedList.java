@@ -196,6 +196,7 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
         if (size==0) {
         	Node newNode = new Node(null,element,null);
         	head = newNode;
+        	tail = head;
         	size++;
         	return newNode;
         }else {
@@ -486,6 +487,28 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
         
        @Test
        public void testPrepend() {
+    	   DLinkedList<String> strList = new DLinkedList<String>();
+    	   // prepend empty list
+    	   strList.prepend("kurt");
+    	   System.out.println(strList.toString());
+    	   assertInvariants(strList);
+    	   strList.add("chua");
+       	   strList.add("zeen");
+       	   strList.add("wang");
+           strList.add("bob");
+       	   strList.add("cornell");
+       	   strList.add("ezra");
+       	   strList.add("andrew");
+           strList.add("mary");
+       	   strList.add("nancy");
+       	   strList.add("mark");
+           assertInvariants(strList);
+           System.out.println(strList.toString());
+           strList.prepend("first");
+           assertEquals("first",strList.get(0));
+    	   
+           System.out.println(strList.toString());
+    	   
     	   
        }
     }
