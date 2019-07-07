@@ -347,10 +347,37 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
         	assertEquals("mary",strList.getNode(8).data);
         	assertEquals("nancy",strList.getNode(9).data);
         	
+        }
+        
+        @Test
+        public void testGet() {
+        	DLinkedList<String> strList = new DLinkedList<String>();
+        	strList.add("kurt");
+        	strList.add("chua");
+        	strList.add("zeen");
+        	strList.add("wang");
+        	strList.add("bob");
+        	strList.add("cornell");
+        	strList.add("ezra");
+        	strList.add("andrew");
+        	strList.add("mary");
+        	strList.add("nancy");
+        	strList.add("mark");
         	
-        	
+        	assertEquals("kurt",strList.get(0));
+        	assertEquals("chua",strList.get(1));
+        	assertEquals("zeen",strList.get(2));
+        	assertEquals("wang",strList.get(3));
+        	assertEquals("bob",strList.get(4));
+        	assertEquals("cornell",strList.get(5));
+        	assertEquals("ezra",strList.get(6));
+        	assertEquals("andrew",strList.get(7));
+        	assertEquals("mary",strList.get(8));
+        	assertEquals("nancy",strList.get(9));
         	
         }
+        
+        
         @Test
         public void testAppend() {
             DLinkedList<String> ll     = new DLinkedList<String>();
