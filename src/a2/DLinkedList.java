@@ -26,7 +26,6 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
     
     /** Constructor: an empty linked list. */
     public DLinkedList() {
-        // Look at the class invariant to determine how to implement this.
     	this.head = null;
     	this.tail = null;
     	this.size = 0;
@@ -37,7 +36,6 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
      * This operation must take constant time.
      */
     public @Override int size() {
-        // This is an extremely small method
         return size;
     }
 
@@ -349,13 +347,18 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
             }catch(AssertionFailedError e) {
             	throw new AssertionFailedError("list is not well-formed");
             }
-       
         }
         
         @Test
         public void testConstructor() {
         	DLinkedList<Integer> intList = new DLinkedList<Integer>();
+        	
+        	// constructor check of an empty linked list 
+        	assertEquals(null,intList.head);
+        	assertEquals(null,intList.tail);
+        	assertEquals(0,intList.size);
         	assertInvariants(intList);
+        	
         	intList.append(2);
         	intList.append(50);
         	intList.append(222);
@@ -364,7 +367,121 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
         	intList.append(2);
         	assertInvariants(intList);
         	
+        	System.out.println("constructor tests passed!");
         }
+        
+        @Test 
+        public void testSize() {
+        	DLinkedList<String> strList = new DLinkedList<String>();
+        	
+        	// size method check 
+        	assertInvariants(strList);
+        	strList.add("kurt");
+        	assertEquals(1,strList.size());
+        	assertEquals(strList.size,strList.size());
+        	strList.add("chua");
+        	assertEquals(2,strList.size());
+        	assertEquals(strList.size,strList.size());
+        	strList.add("zeen");
+        	assertEquals(3,strList.size());
+        	assertEquals(strList.size,strList.size());
+        	strList.add("wang");
+        	assertEquals(4,strList.size());
+        	assertEquals(strList.size,strList.size());
+        	strList.add("bob");
+        	assertEquals(5,strList.size());
+        	assertEquals(strList.size,strList.size());
+        	strList.add("cornell");
+        	assertEquals(6,strList.size());
+        	assertEquals(strList.size,strList.size());
+        	strList.add("ezra");
+        	assertEquals(7,strList.size());
+        	assertEquals(strList.size,strList.size());
+        	strList.add("andrew");
+        	assertEquals(8,strList.size());
+        	assertEquals(strList.size,strList.size());
+        	strList.add("mary");
+        	assertEquals(9,strList.size());
+        	assertEquals(strList.size,strList.size());
+        	strList.add("nancy");
+        	assertEquals(10,strList.size());
+        	assertEquals(strList.size,strList.size());
+        	strList.add("mark");
+        	assertEquals(11,strList.size());
+        	assertEquals(strList.size,strList.size());
+        	assertInvariants(strList);
+        	
+        	System.out.println("size method tests passed!");        	
+        }
+        
+        @Test
+        public void testToStringRev() {
+        	DLinkedList<String> strList = new DLinkedList<String>();
+        	DLinkedList<Integer> intList = new DLinkedList<Integer>();
+        	
+        	strList.add("first");
+        	strList.add("second");
+        	strList.add("third");
+        	strList.add("fourth");
+        	strList.add("fifth");
+        	strList.add("sixth");
+        	strList.add("seventh");
+        	strList.add("eigth");
+        	strList.add("nineth");
+        	strList.add("tenth");
+        	strList.add("eleventh");
+        	assertInvariants(strList);
+        	
+        	intList.add(1);
+        	intList.add(2);
+        	intList.add(3);
+        	intList.add(4);
+        	intList.add(5);
+        	assertInvariants(intList);
+        
+        	// toStringRev method test
+      	
+        	assertEquals("[first, second, third, fourth, fifth, sixth, "
+        			+ "seventh, eigth, nineth, tenth, eleventh]", strList.toString());
+        	assertEquals("[eleventh, tenth, nineth, eigth, seventh, sixth, "
+        			+ "fifth, fourth, third, second, first]", strList.toStringRev());
+        	
+        	assertEquals("[1, 2, 3, 4, 5]", intList.toString());
+        	assertEquals("[5, 4, 3, 2, 1]", intList.toStringRev());
+        	
+        	System.out.println("toStringRev method tests passed!");  
+        }
+       
+        @Test
+        public void testAppend() {
+            DLinkedList<String> ll     = new DLinkedList<String>();
+            DLinkedList<String>.Node n = ll.append("Mike");
+            assertEquals("[Mike]", ll.toString());
+            assertEquals("[Mike]", ll.toStringRev());
+            assertEquals(1, ll.size());
+            assertEquals(ll.tail, n);   
+            
+            // added tests for append method
+            DLinkedList<String> strList = new DLinkedList<String>();
+            strList.append("This");
+            assertEquals("This", strList.tail.data);
+            strList.append("is");
+            assertEquals("is", strList.tail.data);
+            strList.append("the");
+            assertEquals("the", strList.tail.data);
+            strList.append("last");
+            assertEquals("last", strList.tail.data);
+            strList.append("element");
+            assertEquals("element", strList.tail.data);
+            assertInvariants(strList);
+            
+            assertEquals("[This, is, the, last, element]", strList.toString());
+            
+            
+            System.out.println("append method tests passed!");
+        }
+
+        
         
         @Test
         public void testAdd() {
@@ -430,16 +547,7 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
         }
         
         
-        @Test
-        public void testAppend() {
-            DLinkedList<String> ll     = new DLinkedList<String>();
-            DLinkedList<String>.Node n = ll.append("Mike");
-            assertEquals("[Mike]", ll.toString());
-            assertEquals("[Mike]", ll.toStringRev());
-            assertEquals(1, ll.size());
-            assertEquals(ll.tail, n);   
-        }
-
+    
         /** Compare DLinkedList to standard library list */
         @Test
         public void testToString() {
@@ -455,11 +563,7 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
             assertEquals(dll.toString(), ll.toString());
             
         }
-        
-        @Test
-        public void testToStringRev() {
      
-        }
         
         @Test
         public void testSet() {
@@ -479,7 +583,6 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
         	
         	assertInvariants(intList);
         	
-
         	assertEquals(0, intList.get(0));
         	assertEquals(1, intList.get(1));
         	assertEquals(2, intList.get(2));
