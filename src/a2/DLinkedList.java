@@ -297,7 +297,11 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
         // Rely on helper methods to keep this method small.
         // Note that a helper method could throw the exception; doesn't
         // have to be done here.
-        throw new NotImplementedError();
+        if(i<0 || i>=size) {
+        	throw new IndexOutOfBoundsException("i is not in [0..size)");
+        }
+        
+       return removeNode(getNode(i));
     }
     
     ////////////////////////////////////////////////////////////////////////////
