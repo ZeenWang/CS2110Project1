@@ -29,6 +29,7 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
     	this.head = null;
     	this.tail = null;
     	this.size = 0;
+   
     }
 
     /**
