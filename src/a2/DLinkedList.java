@@ -106,23 +106,23 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
      * @throws IndexOutOfBoundsException if index is not in [0..size)
      */
     private Node getNode(int index) {
-    		if(index <= size/2) {
-    			int i = 0;
-    			Node nodeNow = head;
-    			while(i< index) {
-    				nodeNow = nodeNow.succ;
-    				i++;
-    			}
-    			return nodeNow;
-    		} else {
-    			int i = size-1;
-    			Node nodeNow = tail;
-    			while(i>index) {
-    				nodeNow = nodeNow.pred;
-    				i--;
-    			}
-    			return nodeNow;
-    		}
+		if(index <= size/2) {
+			int i = 0;
+			Node nodeNow = head;
+			while(i< index) {
+				nodeNow = nodeNow.succ;
+				i++;
+			}
+			return nodeNow;
+		} else {
+			int i = size-1;
+			Node nodeNow = tail;
+			while(i>index) {
+				nodeNow = nodeNow.pred;
+				i--;
+			}
+			return nodeNow;
+		}
     }
     
     /**
