@@ -29,7 +29,6 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
     	this.head = null;
     	this.tail = null;
     	this.size = 0;
-   
     }
 
     /**
@@ -649,6 +648,12 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
        	   strList.add("nancy");
        	   strList.add("mark");
            assertInvariants(strList);
+          
+           // prepend method tests
+           strList.prepend("fifth");
+           assertEquals("fifth",strList.get(0));
+           strList.prepend("fourth");
+           assertEquals("fourth",strList.get(0));
            strList.prepend("third");
            assertEquals("third",strList.get(0));
            strList.prepend("second");
@@ -658,7 +663,9 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
 
            assertInvariants(strList);
              	   
-           System.out.println(strList.toString());
+           assertEquals("[first, second, third, fourth, fifth, "
+           		+ "kurt, chua, zeen, wang, bob, cornell, ezra, "
+           		+ "andrew, mary, nancy, mark]", strList.toString());
            
            System.out.println("prepend method tests passed!");
        }
@@ -666,8 +673,12 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
        public void testInsertBefore() {
     	   DLinkedList<Integer> intList = new DLinkedList<Integer>();
     	   intList.add(0);
+    	   assertInvariants(intList);
     	   System.out.println(intList);
+    	   
+    	   // insertBefore method tests
     	   intList.insertBefore(-1, intList.getNode(0));
+    	   assertEquals("[-1, 0]", intList.toString());
     	   System.out.println(intList);
     	   intList.add(1);
 	       intList.add(2);
@@ -689,10 +700,24 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
 	       intList.insertBefore(-8, intList.getNode(0));
 	       intList.insertBefore(-9, intList.getNode(0));
 	       intList.insertBefore(-10, intList.getNode(0));
-	       System.out.println(intList);
-	     
 	       assertInvariants(intList);
-    	   
+	       assertEquals("[-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, "
+	       		+ "1, 2, 3, 4, 5, 6, 7, 8, 9, 10]", intList.toString());
+	       
+	       DLinkedList<String> strList = new DLinkedList<String>();
+	       
+	       strList.add("Chua");
+	       strList.insertBefore("Kurt", strList.getNode(0));
+	       strList.append("University");
+	       strList.insertBefore("is a student at", strList.getNode(2));
+	       strList.insertBefore("Cornell", strList.getNode(2));
+	       strList.append("New York");
+	       strList.insertBefore("in Ithaca", strList.getNode(5));
+	       
+	       assertEquals("[Kurt, Chua, is a student at, Cornell, University, "
+	       		+ "in Ithaca, New York]", strList.toString());
+	       
+	       System.out.println("insertBefore method tests passed!");  
        }
        
        @Test
