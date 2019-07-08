@@ -106,6 +106,8 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
      * @throws IndexOutOfBoundsException if index is not in [0..size)
      */
     private Node getNode(int index) {
+    	if(index <0 || index >=size)
+    		throw new IndexOutOfBoundsException("index is not in [0..size)");
 		if(index <= size/2) {
 			int i = 0;
 			Node nodeNow = head;
