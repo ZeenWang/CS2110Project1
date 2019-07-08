@@ -83,22 +83,14 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
      * This operation must take constant time.
      */
     private Node append(E element) {
-        // This mid-size helper function will be used by other methods
-    	
-    	if (size == 0) {
-    		Node newNode = new Node(null,element,null);
-    		head = newNode;
-    		tail = head;
-    		size++;
-    		return newNode;
-    	}else {
-    		Node newNode = new Node(tail, element, null);
-    		tail.succ = newNode;
-    		tail = newNode;
-    		size++;
-    		return newNode;
-    	}
-   	    	
+    	Node newnode= new Node(this.tail, element, null);
+    	if(this.size==0)
+    		this.head=newnode;
+    	else 
+    		newnode.pred.succ=newnode;
+    	this.size++;
+    	this.tail=newnode;
+    	return newnode;
     }
     
     /** Append element to the end of this list and return true. */
