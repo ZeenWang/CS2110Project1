@@ -648,11 +648,18 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
        	   strList.add("nancy");
        	   strList.add("mark");
            assertInvariants(strList);
-           System.out.println(strList.toString());
+           strList.prepend("third");
+           assertEquals("third",strList.get(0));
+           strList.prepend("second");
+           assertEquals("second",strList.get(0));
            strList.prepend("first");
            assertEquals("first",strList.get(0));
-    	   
+
+           assertInvariants(strList);
+             	   
            System.out.println(strList.toString());
+           
+           System.out.println("prepend method tests passed!");
        }
        @Test
        public void testInsertBefore() {
