@@ -263,10 +263,10 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
     	assert(n!= null);
     	
     	if(n==head) {
-        	if(size == 1) {
-        		head = tail;
-        		tail = head;
-        		n = tail;
+        	if(size==1) {
+        		head = null;
+        		tail = null;
+        		return n.data;
         	}
     		 head = getNode(1);
         	 head.pred = null;
@@ -275,6 +275,11 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
          }
          
          if(n==tail) {
+        	 if(size ==1) {
+        		 head = null;
+        		 tail = null;
+        		 return n.data;
+        	 }
         	 tail = getNode(size-2);
         	 tail.succ = null;
         	 size --;
@@ -477,6 +482,7 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
             DLinkedList<String> strList = new DLinkedList<String>();
             strList.append("This");
             assertEquals("This", strList.tail.data);
+            assertEquals(strList.head.data, strList.tail.data);
             strList.append("is");
             assertEquals("is", strList.tail.data);
             strList.append("the");
@@ -764,6 +770,7 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
        @Test 
        public void removeNode() {
     	   DLinkedList<String> strList = new DLinkedList<String>();
+    	   System.out.println(strList.tail);
 	       strList.add("kurt");
 	       strList.add("chua");
 	       strList.add("zeen");
@@ -808,9 +815,25 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
 	       assertEquals("nancy", strList.removeNode(strList.tail));
 	       assertEquals("[ezra]", strList.toString());
 	       assertEquals("ezra", strList.removeNode(strList.head));
-	       System.out.println(strList.toString());
-	       //assertEquals("[]", strList.toString());
-	          	   
+	       assertEquals("[]", strList.toString());
+	       
+	       DLinkedList<Integer> intList = new DLinkedList<Integer>();
+	       intList.add(1);
+	       intList.add(2);
+	       intList.add(3);
+	       assertEquals(1, intList.removeNode(intList.getNode(0)));
+	       assertEquals("[2, 3]", intList.toString());
+	       assertEquals(2, intList.removeNode(intList.head));
+	       assertEquals("[3]", intList.toString());
+	       assertEquals(3, intList.removeNode(intList.tail));
+	       assertEquals("[]", intList.toString());
+	       
+	       System.out.println("removeNode method tests passed!");
+       }
+       
+       @Test
+       public void removeTest() {
+    	   
        }
     }
 }
