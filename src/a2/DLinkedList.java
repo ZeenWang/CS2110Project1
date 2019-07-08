@@ -225,6 +225,7 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
         Node newNode = new Node(prevNode,element,node);
         prevNode.succ = newNode;
         node.pred = newNode;
+        size++;
         return newNode;
     }
     
@@ -247,7 +248,7 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
         	throw new IndexOutOfBoundsException("i is not in [0..size]");
         }
         insertBefore(element, getNode(index));
-        }
+     }
     
     /**
      * Remove n from this list and return its data.
@@ -258,15 +259,25 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
     private E removeNode(Node n) {
         // TODO item #12
         // This is a large helper method
-         if(n==head) {
-        	 head.succ = head;
+    	
+    	assert(n!= null);
+    	
+    	if(n==head) {
+        	if(size == 1) {
+        		head = tail;
+        		tail = head;
+        		n = tail;
+        	}
+    		 head = getNode(1);
         	 head.pred = null;
+        	 size --;
         	 return n.data;
          }
          
          if(n==tail) {
-        	 tail.pred = tail;
+        	 tail = getNode(size-2);
         	 tail.succ = null;
+        	 size --;
         	 return n.data;
          }else {
         	 Node nextNode = n.succ;
@@ -275,6 +286,7 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
         	 n.pred = null;
         	 predNode.succ = nextNode;
         	 nextNode.pred = predNode;
+        	 size --;
         	 return n.data;
          }
          
@@ -710,9 +722,10 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
 	       strList.insertBefore("Kurt", strList.getNode(0));
 	       strList.append("University");
 	       strList.insertBefore("is a student at", strList.getNode(2));
-	       strList.insertBefore("Cornell", strList.getNode(2));
+	       strList.insertBefore("Cornell", strList.getNode(3));
 	       strList.append("New York");
 	       strList.insertBefore("in Ithaca", strList.getNode(5));
+	      
 	       
 	       assertEquals("[Kurt, Chua, is a student at, Cornell, University, "
 	       		+ "in Ithaca, New York]", strList.toString());
@@ -721,15 +734,83 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
        }
        
        @Test
-       public void addNodeIndex() {
+       public void addIndex() {
+    	   DLinkedList<Integer> intList = new DLinkedList<Integer>();
+    	   intList.add(0);
+    	   intList.add(2);
+    	   intList.add(4);
+    	   intList.add(6);
+    	   intList.add(8);
+    	   intList.add(10);
+    	   assertInvariants(intList);
+    	
+    	   // add method tests 
+    	   assertEquals("[0, 2, 4, 6, 8, 10]", intList.toString());
+    	   intList.add(1, 1);
+    	   assertEquals("[0, 1, 2, 4, 6, 8, 10]", intList.toString());
+    	   intList.add(6, 9);
+    	   assertEquals("[0, 1, 2, 4, 6, 8, 9, 10]", intList.toString());
+    	   intList.add(3, 3);
+    	   assertEquals("[0, 1, 2, 3, 4, 6, 8, 9, 10]", intList.toString());
+    	   intList.add(6, 7);
+    	   assertEquals("[0, 1, 2, 3, 4, 6, 7, 8, 9, 10]", intList.toString());
+    	   intList.add(5, 5);
+    	   assertEquals("[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]", intList.toString());
+    	   assertInvariants(intList);
+    	   
+    	   System.out.println("second add method tests passed!");	       	 
+       }
+       
+       @Test 
+       public void removeNode() {
     	   DLinkedList<String> strList = new DLinkedList<String>();
-    	   strList.add(0, "b");
-    	   System.out.println(strList.toString());
-    	   
-    	   
-    	   
-    	   
-    	   
+	       strList.add("kurt");
+	       strList.add("chua");
+	       strList.add("zeen");
+	       strList.add("wang");
+	       strList.add("bob");
+	       strList.add("cornell");
+	       strList.add("ezra");
+	       strList.add("andrew");
+	       strList.add("mary");
+	       strList.add("nancy");
+	       strList.add("mark");
+	       assertInvariants(strList);
+	       
+	       // remove head 
+	       assertEquals("kurt",strList.removeNode(strList.head));
+	       assertEquals("[chua, zeen, wang, bob, cornell, ezra, andrew, mary, nancy, mark]", 
+	    	   strList.toString());
+	       assertEquals("chua",strList.head.data);
+	       
+	       // remove tail
+	       assertEquals("mark", strList.removeNode(strList.tail));
+	       assertEquals("[chua, zeen, wang, bob, cornell, ezra, andrew, mary, nancy]", 
+		    	   strList.toString());
+	       assertEquals("nancy", strList.tail.data);
+	       
+	       // remove other values 
+	       assertEquals("cornell", strList.removeNode(strList.getNode(4)));
+	       assertEquals("[chua, zeen, wang, bob, ezra, andrew, mary, nancy]", 
+	    		   strList.toString());
+	       assertEquals("andrew", strList.removeNode(strList.getNode(5)));
+	       assertEquals("[chua, zeen, wang, bob, ezra, mary, nancy]", strList.toString());
+	       assertEquals("bob", strList.removeNode(strList.getNode(3)));
+	       assertEquals("[chua, zeen, wang, ezra, mary, nancy]", strList.toString());
+	       assertEquals("mary", strList.removeNode(strList.getNode(4)));
+	       assertEquals("[chua, zeen, wang, ezra, nancy]", strList.toString());
+	       assertEquals("zeen", strList.removeNode(strList.getNode(1)));
+	       assertEquals("[chua, wang, ezra, nancy]", strList.toString());
+	       assertEquals("wang", strList.removeNode(strList.getNode(1)));
+	       assertEquals("[chua, ezra, nancy]", strList.toString());
+	       assertEquals("chua", strList.removeNode(strList.head));
+	       assertEquals("[ezra, nancy]", strList.toString());
+	       assertEquals("nancy", strList.removeNode(strList.tail));
+	       assertEquals("[ezra]", strList.toString());
+	       assertEquals("ezra", strList.removeNode(strList.head));
+	       System.out.println(strList.toString());
+	       //assertEquals("[]", strList.toString());
+	          	   
        }
     }
 }
