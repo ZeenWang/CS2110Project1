@@ -1,6 +1,7 @@
 package a2;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
 
@@ -106,7 +107,9 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
      * @throws IndexOutOfBoundsException if index is not in [0..size)
      */
     private Node getNode(int index) {
-    	if(index <0 || index >=size)
+    	if(size==0)
+    		return null;
+    	if(index <0 || index >= size) 
     		throw new IndexOutOfBoundsException("index is not in [0..size)");
 		if(index <= size/2) {
 			int i = 0;
@@ -136,6 +139,8 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
      * @throws IndexOutOfBoundsException if index is not in [0..size)
      */
     public @Override E get(int index) {
+    	if(index <0 || index >= size) 
+    		throw new IndexOutOfBoundsException("index is not in [0..size)");
     	return getNode(index).data;
     }
     
@@ -339,10 +344,13 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
          */
         private static void assertInvariants(DLinkedList<?> list) {
             try{
-            assertEquals(list.getNode(0), list.head);
-            assertEquals(list.getNode(list.size-1),list.tail);
-            assertEquals(list.size(), list.size);
+	            assertEquals(list.getNode(0), list.head);
+	            if(list.size!=0) {
+	            	assertEquals(list.getNode(list.size-1),list.tail);
+	            }
+	            assertEquals(list.size(), list.size);
             }catch(AssertionFailedError e) {
+            	System.out.println(e.getMessage());
             	throw new AssertionFailedError("list is not well-formed");
             }
         }
@@ -524,7 +532,6 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
         	DLinkedList<Integer>.Node n3 = intList.append(3);
         	DLinkedList<Integer>.Node n4 = intList.append(4);
         	DLinkedList<Integer>.Node n5 = intList.append(5);
-        	
           	
         	// tests for getNode method
         	assertEquals(n, intList.getNode(0));
@@ -534,6 +541,8 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
         	assertEquals(n4, intList.getNode(4));
         	assertEquals(n5, intList.getNode(5));
         	
+        	assertThrows(IndexOutOfBoundsException.class, ()->intList.getNode(99));
+        	assertThrows(IndexOutOfBoundsException.class, ()->intList.getNode(-1));
         	System.out.println("getNode method tests passed!");
         }
         
