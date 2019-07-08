@@ -65,8 +65,6 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
      * For example, if this contains 6 3 8 in that order, the result is "[8, 3, 6]".
      */
     public String toStringRev() {
-        // This should use field tail and the pred fields in nodes.
-        // Do NOT use field size.
        String res = "[";
     	for (Node n = tail; n!=null; n=n.pred) {
     		if(n!=tail)
@@ -95,10 +93,6 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
     
     /** Append element to the end of this list and return true. */
     public @Override boolean add(E element) {
-        // TODO item #5
-        // Rely on helper methods to keep this method small
-        // This is THE MOST IMPORTANT method to get right because it will be used
-        // in nearly every test
         append(element);
         return (tail.data == element);
     }
@@ -112,12 +106,6 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
      * @throws IndexOutOfBoundsException if index is not in [0..size)
      */
     private Node getNode(int index) {
-        // TODO item #6
-        // This large helper method is used more than any other helper method
-        // It is used by other public methods or for testing.
-        // Note that there are two ways to get to a node: from the head or from the tail.
-        // This MUST use the fastest way for index.
-        // (If h is exactly the middle, then either way is ok.)
     		if(index <= size/2) {
     			int i = 0;
     			Node nodeNow = head;
@@ -145,10 +133,7 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
      *              0 is the first element, 1 is the second, etc.
      * @throws IndexOutOfBoundsException if index is not in [0..size)
      */
-    public @Override E get(int index) {        // Rely on helper methods to keep this method small.
-        // Note that the helper method could throw the exception; doesn't
-        // have to be done here.
-        
+    public @Override E get(int index) {
     	return getNode(index).data;
     }
     
