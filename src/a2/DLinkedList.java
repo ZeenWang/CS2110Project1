@@ -155,16 +155,12 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
      * @throws IndexOutOfBoundsException if index is not in [0..size)
      */
     public @Override E set(int index, E element) {
-        // TODO item #8
-        // Rely on helper methods to keep this method small.
-        // Note that a helper method could throw the exception; doesn't
-        // have to be done here.
-     if(index<0 || index>=size) {
-    	 throw new IndexOutOfBoundsException("index is not in [0..size)");
-     }
-     E oldVal = get(index);
-     getNode(index).data= element;
-     return oldVal;
+	     if(index<0 || index>=size) {
+	    	 throw new IndexOutOfBoundsException("index is not in [0..size)");
+	     }
+	     E oldVal = get(index);
+	     getNode(index).data= element;
+	     return oldVal;
     }
     
     /**
@@ -173,8 +169,6 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
      * Runs in constant time.
      */
     private Node prepend(E element) {
-        // TODO item #9
-        // This mid-size helper function will be used by other methods
         if (size==0) {
         	Node newNode = new Node(null,element,null);
         	head = newNode;
@@ -198,10 +192,6 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
      * @param node a non-null Node that must be in this list
      */
     private Node insertBefore(E element, Node node) {
-        // TODO item #10
-        // This mid-size helper function will be used by other methods.
-        // Do NOT test whether node is actually a Node of this list because
-        // it will then not be a constant-time operation.
         if (node==head) {
         	return prepend(element);
         }
@@ -224,10 +214,6 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
      * @throws IndexOutOfBoundsException if i is not in [0..size]
      */
     public @Override void add(int index, E element) {
-        // TODO item #11
-        // Rely on helper methods to keep this method small.
-        // Note that a helper method could throw the exception; doesn't
-        // have to be done here.
         if(index < 0 || index > size) {
         	throw new IndexOutOfBoundsException("i is not in [0..size]");
         }
@@ -241,9 +227,7 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
      * @return the data inside of n
      */
     private E removeNode(Node n) {
-        // TODO item #12
-        // This is a large helper method
-    	
+
     	assert(n!= null);
     	
     	if(n==head) {
@@ -294,10 +278,6 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
      * @throws IndexOutOfBoundsException if i is not in [0..size)
      */
     public @Override E remove(int i) {
-        // TODO item #13
-        // Rely on helper methods to keep this method small.
-        // Note that a helper method could throw the exception; doesn't
-        // have to be done here.
         if(i<0 || i>=size) {
         	throw new IndexOutOfBoundsException("i is not in [0..size)");
         }
@@ -350,7 +330,6 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
 	            }
 	            assertEquals(list.size(), list.size);
             }catch(AssertionFailedError e) {
-            	System.out.println(e.getMessage());
             	throw new AssertionFailedError("list is not well-formed");
             }
         }
@@ -575,6 +554,8 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
         	assertEquals("mary",strList.get(8));
         	assertEquals("nancy",strList.get(9));
         	
+        	assertThrows(IndexOutOfBoundsException.class, ()->strList.get(99));
+        	assertThrows(IndexOutOfBoundsException.class, ()->strList.get(-1));
         	System.out.println("get method tests passed!");	
         }
         
@@ -615,7 +596,8 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
         	assertInvariants(intList);
         	
         	assertEquals("[10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]",intList.toString());
-        	
+        	assertThrows(IndexOutOfBoundsException.class, ()->intList.set(99,666));
+        	assertThrows(IndexOutOfBoundsException.class, ()->intList.set(-1,888));
         	System.out.println("set method tests passed!");
         }
         
@@ -752,7 +734,8 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
     	   intList.add(5, 5);
     	   assertEquals("[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]", intList.toString());
     	   assertInvariants(intList);
-    	   
+	       	assertThrows(IndexOutOfBoundsException.class, ()->intList.add(99,77));
+	       	assertThrows(IndexOutOfBoundsException.class, ()->intList.add(-1,775));
     	   System.out.println("second add method tests passed!");	       	 
        }
        
@@ -874,6 +857,8 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
 	       strList.remove(0);
 	       assertEquals("[]", strList.toString());
 	       
+	       	assertThrows(IndexOutOfBoundsException.class, ()->strList.remove(99));
+	       	assertThrows(IndexOutOfBoundsException.class, ()->strList.remove(-1));
 	       System.out.println("remove method tests passed!"); 
        }
     }
