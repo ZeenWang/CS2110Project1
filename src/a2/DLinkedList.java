@@ -12,7 +12,7 @@ import junit.framework.AssertionFailedError;
  * An instance is a doubly linked list. It provides much of the functionality
  * of Java class java.util.LinkedList.
  * 
- * Author: Kurt Chua 
+ * Author: Kurt Chua & Zeen Wang 
  */
 public class DLinkedList<E> extends java.util.AbstractList<E> {
     /** Number of nodes in the linked list. */
