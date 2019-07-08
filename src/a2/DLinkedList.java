@@ -25,6 +25,9 @@ public class DLinkedList<E> extends java.util.AbstractList<E> {
     /** last  node of the linked list (null if the list is empty) */
     private Node tail;
     
+    /** Special node. */
+    private Node sentinel= new Node(tail,null,head);
+    
     /** Constructor: an empty linked list. */
     public DLinkedList() {
     	this.head = null;
