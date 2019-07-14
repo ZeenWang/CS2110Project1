@@ -49,7 +49,7 @@ public class Person {
 	
 	/** returns this person's name */
 	public String name() {
-		throw new NotImplementedError();
+		return this.name;
 	
 	}
 	

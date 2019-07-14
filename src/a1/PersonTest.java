@@ -1,204 +1,219 @@
 package a1;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
 class PersonTest {
 
+	// Helpers /////////////////////////////////////////////////////////////////
+	
+	static Person testCase() {
+		return new Person("Mike", 1983, 5, 8);
+	}
+	
+	// Group A /////////////////////////////////////////////////////////////////
+	
+	// Black box tests
+	
 	@Test
-	void personAndNameTest() {
-		// test for a person's constructor
-		// test for name(),birthYear(),birthMonth() and birthDay()
-
-		// test for a new person Kurt
-		Person kurt = new Person("Kurt",1999,4,12);
-		assertEquals("Kurt", kurt.name());
-		assertEquals(1999, kurt.birthYear());
-		assertEquals(4, kurt.birthMonth());
-		assertEquals(12, kurt.birthDay());
-		assertEquals(null, kurt.mother());
-		assertEquals(null,kurt.father());
-		
-		// test for a new person Ezra
-		Person ezra = new Person("Ezra",1807,1,11);
-		assertEquals("Ezra", ezra.name());
-		assertEquals(1807, ezra.birthYear());
-		assertEquals(1, ezra.birthMonth());
-		assertEquals(11, ezra.birthDay());
-		assertEquals(null,ezra.mother());
-		assertEquals(null,ezra.father());
-		
-		System.out.println("Contructor tests passed!");
+	void testGroupA() {
+		Person p = testCase();
+		assertEquals(p.name(),"Mike");
+		assertEquals(p.mother(),null);
+		assertEquals(p.father(),null);
+		assertEquals(p.birthYear(),1983);
+		assertEquals(p.birthMonth(), 5);
+		assertEquals(p.birthDay(), 8);
+		assertEquals(p.numChildren(), 0);
 	}
 	
 	@Test
-	void motherTests() {
-		
-		// test for methods mother() and setMother()
-		Person kurt = new Person("Kurt",1999,4,12);
-		Person daisy = new Person("Daisy",1975,9,8);
-		kurt.setMother(daisy);
-		assertEquals(daisy, kurt.mother());
-		
-		// change mother
-		Person martha = new Person("Martha",1989,1,4);
-		kurt.setMother(martha);
-		assertEquals(martha,kurt.mother());
-		
-		Person kate = new Person("Kate",1978,2,3);
-		kurt.setMother(kate);
-		assertEquals(kate,kurt.mother());
-		
-		// unknown mother
-		Person unknown = null;
-		kurt.setMother(unknown);
-		assertEquals(unknown, kurt.mother());
-		
-		
-		System.out.println("mother() and setMother() test cases passed!");
+	void testConstructorEmpty() {
+		assertThrows(AssertionError.class, () -> {new Person("", 1983, 5, 8); });
 	}
 	
 	@Test
-	void fatherTests() {
-		
-		// test for methods father() and setFather()
-		Person kurt = new Person("Kurt",1999,4,12);
-		assertEquals(null, kurt.father());
-		Person alan = new Person("Alan",1969,10,11);
-		kurt.setFather(alan);
-		assertEquals(alan, kurt.father());
-		
-		// change father
-		Person bob = new Person("Bob",1976,12,3);
-		kurt.setFather(bob);
-		assertEquals(bob, kurt.father());
-		
-		Person dave = new Person ("Dave",1982,2,4);
-		kurt.setFather(dave);
-		assertEquals(dave,kurt.father());
-		
-		// unknown father
-		Person unknown = null;
-		kurt.setFather(unknown);
-		assertEquals(unknown,kurt.father());
-		
-		System.out.println("father() and setFather() test cases passed!");
+	void testConstructorNull() {
+		assertThrows(AssertionError.class, () -> {new Person(null, 1983, 5, 8); });
+	}
+	
+	@Test
+	void testConstructorBadMonth() {
+		assertThrows(AssertionError.class, () -> {new Person("Mike", 1983, 0, 8); });
+		assertThrows(AssertionError.class, () -> {new Person("Mike", 1983, 25, 8); });
+	}
+	
+	@Test
+	void testConstructorBadDay() {
+		assertThrows(AssertionError.class, () -> {new Person("Mike", 1983, 5, -5); });
+		assertThrows(AssertionError.class, () -> {new Person("Mike", 1983, 5, 40); });
 	}
 
+	// Group B /////////////////////////////////////////////////////////////////
 	
 	@Test
-	void numChildrenTest() {
-		
-		// test for numChildren()
-		
-		// 1 child for two parents 
-		Person kurt = new Person("Kurt",1999,4,12);
-		Person daisy = new Person("Daisy",1975,9,8);
-		Person alan = new Person("Alan",1969,10,11);
-		kurt.setFather(alan);
-		kurt.setMother(daisy);
-		assertEquals(1, alan.numChildren());
-		assertEquals(1, daisy.numChildren());
-		
-		// change father
-		Person bob = new Person("Bob",1976,12,3);
-		kurt.setFather(bob);
-		assertEquals(1, bob.numChildren());
-		assertEquals(1, daisy.numChildren());
-		assertEquals(0,alan.numChildren());
-		
-		// change mother
-		Person martha = new Person("Martha",1989,1,4);
-		kurt.setMother(martha);
-		assertEquals(1,martha.numChildren());
-		assertEquals(1, bob.numChildren());
-		assertEquals(0,daisy.numChildren());
-		assertEquals(0,alan.numChildren());
-		
-		// unknown parents 
-		kurt.setFather(null);
-		kurt.setMother(null);
-		assertEquals(0,martha.numChildren());
-		assertEquals(0, bob.numChildren());
-		assertEquals(0,daisy.numChildren());
-		assertEquals(0,alan.numChildren());
-		
-		System.out.println("numChildren() test cases passed!");
+	void testSetName() {
+		Person p = testCase();
+		p.setName("Michael");
+		assertEquals("Michael", p.name());
 	}
 	
 	@Test
-	void settersTest() {
-		// create a new person Kurt
-		Person kurt = new Person("Kurt",1999,4,12);
-		
-		// set new birthday and name
-		kurt.setBirthDay(4);
-		kurt.setBirthMonth(11);
-		kurt.setBirthYear(2001);
-		kurt.setName("zeen");
-		
-		// test
-		assertEquals("zeen", kurt.name());
-		assertEquals(2001, kurt.birthYear());
-		assertEquals(11, kurt.birthMonth());
-		assertEquals(4, kurt.birthDay());
-		
-		System.out.println("Setters tests passed!");
+	void testSetNameNull() {
+		Person p = testCase();
+		assertThrows(AssertionError.class, () -> {p.setName(null);});
 	}
 	
 	@Test
-	void comparisonsTest() {
-		// create new persons Kurt and Bob.
-		Person kurt = new Person("Kurt",1999,4,12);
-		Person bob = new Person("Bob",1976,12,3);
+	void testSetNameNonNull() {
+		Person p = testCase();
+		assertThrows(AssertionError.class, () -> {p.setName("");});
+	}
+	
+	@Test
+	void testSetBirthYear() {
+		Person p = testCase();
+		p.setBirthYear(2019);
+		assertEquals(2019, p.birthYear());
+		p.setBirthYear(1983);
+		assertEquals(1983, p.birthYear());
+	}
+	
+	@Test
+	void testSetBirthMonth() {
+		Person p = testCase();
+		p.setBirthMonth(9);
+		assertEquals(p.birthMonth(), 9);
+	}
+	
+	@Test
+	void testSetBirthMonthBad() {
+		Person p = testCase();
+		assertThrows(AssertionError.class, () -> { p.setBirthMonth( 0); });
+		assertThrows(AssertionError.class, () -> { p.setBirthMonth(-1); });
+		assertThrows(AssertionError.class, () -> { p.setBirthMonth(30); });
+		assertEquals(p.birthMonth(),5);
+	}
+	
+	@Test
+	void testSetBirthDay() {
+		Person p = testCase();
+		p.setBirthDay(13);
+		assertEquals(13, p.birthDay());
+	}
+	
+	@Test
+	void testSetBirthDayBad() {
+		Person p = testCase();
+		assertThrows(AssertionError.class, () -> { p.setBirthDay( 0); });
+		assertThrows(AssertionError.class, () -> { p.setBirthDay(-1); });
+		assertThrows(AssertionError.class, () -> { p.setBirthDay(32); });
+		assertEquals(p.birthDay(),8);
+	}
 
-		// test for isOlderThan method.
-		assertEquals(true, bob.isOlderThan(kurt));
-		bob.setBirthYear(2000);
-		assertEquals(false, bob.isOlderThan(kurt));
-		bob.setBirthYear(1999);
-		assertEquals(false, bob.isOlderThan(kurt));
-		bob.setBirthMonth(2);
-		assertEquals(true, bob.isOlderThan(kurt));
-		bob.setBirthMonth(4);
-		assertEquals(true, bob.isOlderThan(kurt));
-		bob.setBirthDay(22);;
-		assertEquals(false, bob.isOlderThan(kurt));
-		bob.setBirthDay(12);;
-		assertEquals(false, bob.isOlderThan(kurt));
+	@Test
+	void testSetFather() {
+		Person p = testCase();
+		Person f = new Person("Bob", 1, 2, 3);
 		
-		// create parents.
-		Person daisy = new Person("Daisy",1975,9,8);
-		Person alan = new Person("Alan",1969,10,11);
-		Person martha = new Person("Martha",1989,1,4);
+		p.setFather(f);
+		assertSame(f, p.father());
+		assertEquals(f.numChildren(), 1);
+		assertEquals(p.numChildren(), 0);
 		
-		// set parents. 
-		kurt.setFather(daisy);
-		kurt.setMother(alan);
-		bob.setFather(daisy);
-		bob.setMother(martha);
+		p.setFather(null);
+		assertSame(null, p.father());
+		assertEquals(f.numChildren(), 0);
+		assertEquals(p.numChildren(), 0);
 		
-		daisy.setFather(alan);
-		daisy.setMother(martha);
-		martha.setMother(alan);
+		p.setFather(p);
+		assertSame(p, p.father());
+		assertEquals(p.numChildren(), 1);
+	}
+
+	@Test
+	void testSetMother() {
+		Person p = testCase();
+		Person m = new Person("Alice", 1, 2, 3);
 		
-		// test for isHalfSibling method.
-	   	assertEquals(true, bob.isHalfSibling(bob));
-		assertEquals(true, daisy.isHalfSibling(kurt));
-		assertEquals(true, bob.isHalfSibling(kurt));
-		assertEquals(true, martha.isHalfSibling(kurt));
-		daisy.setFather(alan);
-		daisy.setMother(kurt);
-		bob.setFather(martha);
-		bob.setMother(daisy);
-		assertEquals(true, bob.isHalfSibling(kurt));
-		assertEquals(true, daisy.isHalfSibling(kurt));
-		assertEquals(false, daisy.isHalfSibling(alan));
-		// same person
-		assertEquals(true, bob.isHalfSibling(bob));
+		p.setMother(m);
+		assertSame(m, p.mother());
+		assertEquals(m.numChildren(), 1);
+		assertEquals(p.numChildren(), 0);
 		
+		p.setMother(null);
+		assertSame(null, p.mother());
+		assertEquals(m.numChildren(), 0);
+		assertEquals(p.numChildren(), 0);
 		
-		System.out.println("Comparisons tests passed!");
+		p.setMother(p);
+		assertSame(p, p.mother());
+		assertEquals(p.numChildren(), 1);
+	}
+	
+	// Group C tests ///////////////////////////////////////////////////////////
+	
+	/** Set up and test isHalfSibling test.  The first four arguments indicate
+	 * the parents of a and b; the options are 0: unknown, 1 and 2: different people
+	 *
+	 * @param expected the expected answer
+	 */
+	static void testHalfSiblingScenario(int am, int af, int bm, int bf, boolean result) {
+		Person[] ps = {null, new Person("Parent 1", 1,2,3), new Person("Parent 2", 2,3,4)};
+		
+		Person a = new Person("Alice", 4,5,6);
+		Person b = new Person("Bob", 7,8,9);
+		
+		a.setMother(ps[am]);
+		a.setFather(ps[af]);
+		b.setMother(ps[bm]);
+		b.setFather(ps[bf]);
+		
+		assertEquals(a.isHalfSibling(b), result);
+		assertEquals(b.isHalfSibling(a), result);
+	}
+			
+	@Test
+	void testIsHalfSibling() {
+		testHalfSiblingScenario(0, 0, 0, 0, false);
+		testHalfSiblingScenario(0, 1, 0, 1, true);
+		testHalfSiblingScenario(1, 0, 1, 0, true);
+		testHalfSiblingScenario(0, 1, 0, 2, false);
+		testHalfSiblingScenario(1, 0, 2, 0, false);
+		testHalfSiblingScenario(1, 2, 1, 2, true);
+		testHalfSiblingScenario(1, 1, 0, 0, false);
+		testHalfSiblingScenario(1, 2, 2, 0, true);
+		testHalfSiblingScenario(1, 2, 0, 1, true);
+	}
+	
+	/**
+	 * set up and test a.isOlderThan(b).
+	 * @param yDiff a.year  - b.year,  in range [-1..1]
+	 * @param mDiff a.month - b.month, in range [-1..1]
+	 * @param dDiff a.day   - b.day,   in range [-1..1]
+	 */
+	void testOlderThanScenario(int yDiff, int mDiff, int dDiff) {
+		Person b = new Person("B", 10, 10, 10);
+		Person a = new Person("A", 10+yDiff, 10+mDiff, 10+dDiff);
+		
+		// a is older than b if a's date is birthdate is smaller,
+		// i.e. if a.date < b.date
+		// i.e. if a.date - b.date < 0
+		boolean result =
+			   yDiff < 0
+			|| yDiff == 0 && mDiff < 0
+			|| yDiff == 0 && mDiff == 0 && dDiff < 0;
+		
+		assertEquals(result, a.isOlderThan(b));
+	}
+	
+	@Test
+	void testIsOlderThan() {
+		for (int i = -1; i <= 1; i++)
+			for (int j = -1; j <= 1; j++)
+				for (int k = -1; k <= 1; k++)
+					testOlderThanScenario(i,j,k);
 	}
 }
