@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -112,11 +113,35 @@ public abstract class MinMaxAI extends Controller {
 	protected Scores HighestOne (Board b,int depth,Player currentP, Player p) {
 		
 Scores maxOrMin=null;
-		Collection<Scores> current=null;
+		
+		ArrayList<Scores> current=new ArrayList<Scores>();
 		Board newb=null;
+		int totalScore=0;
 		for(Location loc:moves(b)) {
-			newb=b.update(currentP, loc);
-			current.add(new Scores(loc,estimate(newb) + HighestOne(newb, depth, currentP.opponent(), p).score));
+			if(b.getState()==b.getState().HAS_WINNER) {
+				if(p==currentP) {
+					current.add(new Scores(loc,Integer.MIN_VALUE));
+					current.get(current.size()-1).isNegativeInfinite=true;
+				}else {
+					current.add(new Scores(loc,Integer.MAX_VALUE));
+					current.get(current.size()-1).isPositiveInfinite=true;
+				}
+			}else {
+				newb=b.update(currentP, loc);
+				if(depth!=0) {
+					Scores bufferS=HighestOne(newb, depth-1, currentP.opponent(), p);
+					if(bufferS.isNegativeInfinite) {
+						totalScore=Integer.MIN_VALUE;
+					}else if(bufferS.isPositiveInfinite) {
+						totalScore=Integer.MAX_VALUE;
+					}else {
+						totalScore=estimate(newb)+bufferS.score;
+					}
+					current.add(new Scores(loc,totalScore));
+				}else {
+					current.add(new Scores(loc,estimate(newb)));
+				}
+			}
 		}
 		if(p==currentP) {
 			Iterator<Scores> scores =current.iterator();
