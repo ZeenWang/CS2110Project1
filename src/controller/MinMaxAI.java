@@ -95,10 +95,10 @@ public abstract class MinMaxAI extends Controller {
 	 * more time to select moves.
 	 */
 	
-	
+
 	protected MinMaxAI(Player me, int depth) {
 		super(me);
-		this.depth=depth;
+		this.depth = depth;
 	}
 
 	/**
