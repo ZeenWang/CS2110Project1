@@ -120,9 +120,11 @@ public abstract class MinMaxAI extends Controller {
 		for(Location loc:moves(b)) {
 			if(b.getState()==b.getState().HAS_WINNER) {
 				if(p==currentP) {
-					current.add(new Scores(loc,Integer.MIN_VALUE)); break;
+					current.add(new Scores(loc,Integer.MIN_VALUE)); 
+					break;
 				}else {
-					current.add(new Scores(loc,Integer.MAX_VALUE)); break;
+					current.add(new Scores(loc,Integer.MAX_VALUE)); 
+					break;
 				}
 			}else {
 				newb=b.update(currentP, loc);
