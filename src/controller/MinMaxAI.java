@@ -79,8 +79,6 @@ public abstract class MinMaxAI extends Controller {
 	 */
 	protected MinMaxAI(Player me, int depth) {
 		super(me);
-		// TODO Auto-generated method stub
-		throw new NotImplementedException();
 	}
 
 	/**
