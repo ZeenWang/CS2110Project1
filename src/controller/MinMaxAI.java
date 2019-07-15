@@ -121,19 +121,19 @@ public abstract class MinMaxAI extends Controller {
 			if(b.getState()==b.getState().HAS_WINNER) {
 				if(p==currentP) {
 					current.add(new Scores(loc,Integer.MIN_VALUE)); 
-					break;
+					continue;
 				}else {
 					current.add(new Scores(loc,Integer.MAX_VALUE)); 
-					break;
+					continue;
 				}
 			}else {
 				newb=b.update(currentP, loc);
 				if(depth!=0) {
 					current.add(new Scores(loc,HighestOne(newb, depth-1, currentP.opponent(), p).score));
-					break;
+					continue;
 				}else {
 					current.add(new Scores(loc,estimate(newb)));
-					break;
+					continue;
 				}
 			}
 		}
