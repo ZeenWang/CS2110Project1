@@ -1,5 +1,8 @@
 package controller;
 
+import java.util.Collection;
+import java.util.Iterator;
+
 import org.eclipse.jdt.annotation.NonNull;
 
 import model.Board;
@@ -55,7 +58,20 @@ import model.Player;
  * the estimation of how good the board is for the given player.
  */
 public abstract class MinMaxAI extends Controller {
-
+	
+	/** the searching depth for this AI*/
+	private int depth=0;
+	
+	private class Scores{
+		public Location loc=null;
+		public int score=0;
+		public boolean isPositiveInfinite=false;
+		public boolean isNegativeInfinite=false;
+		public Scores(Location loc,int score) {
+			this.loc=loc;
+			this.score=score;
+		}
+	}
 	/**
 	 * Return an estimate of how good the given board is for me.
 	 * A result of infinity means I have won.  A result of negative infinity
@@ -77,8 +93,11 @@ public abstract class MinMaxAI extends Controller {
 	 * <p>choosing a higher value for depth makes the AI smarter, but requires
 	 * more time to select moves.
 	 */
+	
+	
 	protected MinMaxAI(Player me, int depth) {
 		super(me);
+		this.depth=depth;
 	}
 
 	/**
@@ -86,7 +105,38 @@ public abstract class MinMaxAI extends Controller {
 	 * algorithm described above.
 	 */
 	protected @Override Location nextMove(Game g) {
-		// TODO Auto-generated method stub
-		throw new NotImplementedException();
+		delay();
+		return HighestOne(g.getBoard(), depth, me, me).loc;
+	}
+	
+	protected Scores HighestOne (Board b,int depth,Player currentP, Player p) {
+		
+Scores maxOrMin=null;
+		Collection<Scores> current=null;
+		Board newb=null;
+		for(Location loc:moves(b)) {
+			newb=b.update(currentP, loc);
+			current.add(new Scores(loc,estimate(newb) + HighestOne(newb, depth, currentP.opponent(), p).score));
+		}
+		if(p==currentP) {
+			Iterator<Scores> scores =current.iterator();
+			Scores buffer=null;
+			maxOrMin=scores.next();
+			while(scores.hasNext()) {
+				buffer=scores.next();
+				if(maxOrMin.score<buffer.score) 
+					maxOrMin=buffer;
+			}
+		}else {
+			Iterator<Scores> scores =current.iterator();
+			Scores buffer=null;
+			maxOrMin=scores.next();
+			while(scores.hasNext()) {
+				buffer=scores.next();
+				if(maxOrMin.score>buffer.score) 
+					maxOrMin=buffer;
+			}
+		}
+		return maxOrMin;
 	}
 }
