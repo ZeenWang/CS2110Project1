@@ -121,23 +121,13 @@ Scores maxOrMin=null;
 			if(b.getState()==b.getState().HAS_WINNER) {
 				if(p==currentP) {
 					current.add(new Scores(loc,Integer.MIN_VALUE));
-					current.get(current.size()-1).isNegativeInfinite=true;
 				}else {
 					current.add(new Scores(loc,Integer.MAX_VALUE));
-					current.get(current.size()-1).isPositiveInfinite=true;
 				}
 			}else {
 				newb=b.update(currentP, loc);
 				if(depth!=0) {
-					Scores bufferS=HighestOne(newb, depth-1, currentP.opponent(), p);
-					if(bufferS.isNegativeInfinite) {
-						totalScore=Integer.MIN_VALUE;
-					}else if(bufferS.isPositiveInfinite) {
-						totalScore=Integer.MAX_VALUE;
-					}else {
-						totalScore=estimate(newb)+bufferS.score;
-					}
-					current.add(new Scores(loc,totalScore));
+					current.add(new Scores(loc,HighestOne(newb, depth-1, currentP.opponent(), p).score));
 				}else {
 					current.add(new Scores(loc,estimate(newb)));
 				}
