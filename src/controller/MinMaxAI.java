@@ -112,7 +112,7 @@ public abstract class MinMaxAI extends Controller {
 	
 	protected Scores HighestOne (Board b,int depth,Player currentP, Player p) {
 		
-Scores maxOrMin=null;
+		Scores maxOrMin=null;
 		
 		ArrayList<Scores> current=new ArrayList<Scores>();
 		Board newb=null;
