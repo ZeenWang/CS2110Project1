@@ -127,9 +127,11 @@ public abstract class MinMaxAI extends Controller {
 			}else {
 				newb=b.update(currentP, loc);
 				if(depth!=0) {
-					current.add(new Scores(loc,HighestOne(newb, depth-1, currentP.opponent(), p).score)); break;
+					current.add(new Scores(loc,HighestOne(newb, depth-1, currentP.opponent(), p).score));
+					break;
 				}else {
-					current.add(new Scores(loc,estimate(newb))); break;
+					current.add(new Scores(loc,estimate(newb)));
+					break;
 				}
 			}
 		}
