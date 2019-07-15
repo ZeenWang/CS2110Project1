@@ -77,8 +77,12 @@ public abstract class MinMaxAI extends Controller {
 	 * <p>choosing a higher value for depth makes the AI smarter, but requires
 	 * more time to select moves.
 	 */
+	
+	private int depth;
+	
 	protected MinMaxAI(Player me, int depth) {
 		super(me);
+		this.depth = depth;
 	}
 
 	/**
