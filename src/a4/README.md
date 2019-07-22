@@ -1,6 +1,10 @@
 # Heap 
 
-Heap is a max-heap implementation of a priority queue that stores elements, and matches each respective element with a priority. 
+Heap is a max-heap implementation of a priority queue that stores elements, and matches each respective element with a priority within the heap.
+
+Our Heap implements the many methods given in the PriorityQueue interface.
+
+Please consult our javadoc for further method details and runtime information.
 
 ## Installation
 
