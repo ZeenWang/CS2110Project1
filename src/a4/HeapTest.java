@@ -21,14 +21,14 @@ class HeapTest {
 	void test() {
 		//test for Constructor.
 		Heap<String, Integer> testHeap= new Heap<String, Integer>(new myC());
-		testHeap.add("Hello", 10);
-		testHeap.add("Hello1", 2);
-		testHeap.add("Hello2", 4);
-		testHeap.add("Hello11", 22);
-		testHeap.add("Hello12", 233);
-		testHeap.add("Hello13", 221);
-		testHeap.add("Hello41", 3);
-		testHeap.add("Hello3", 74);
+		testHeap.add("Hello10", 10);
+		testHeap.add("Hello9", 9);
+		testHeap.add("Hello8", 8);
+		testHeap.add("Hello7", 7);
+		testHeap.add("Hello6", 6);
+		testHeap.add("Hello5", 5);
+		testHeap.add("Hello4", 4);
+		testHeap.add("Hello3", 3);
 		System.out.println(testHeap.peek());
 		System.out.println(testHeap.poll());
 		System.out.println(testHeap.poll());

@@ -33,11 +33,11 @@ public class Heap<E,P> implements PriorityQueue<E, P>{
 			throw new NoSuchElementException();
 		E returnValue=data.get(0);
 		swap(0, size()-1);
+		
 		//remove the largest one.
 		hashMap.remove(data.get(size()-1),size()-1);
 		priority.remove(size()-1);
 		data.remove(size()-1);
-		
 		moveDown(0);
 		return returnValue;
 		
@@ -94,29 +94,29 @@ public class Heap<E,P> implements PriorityQueue<E, P>{
 	}
 	
 	private void moveDown(int i) {
-		while(c.compare(priority.get(i),priority.get(smaller(i)) )<0) {
-			swap(i, smaller(i));
-			i=smaller(i);
+		int largerOne=0;
+		while(larger(i)!=-1 && c.compare(priority.get(i),priority.get(larger(i)) )<0) {
+			largerOne=larger(i);
+			swap(i, largerOne);
+			i=largerOne;
 		}
 	}
 	
 	private void moveUp(int i) {
-		while(c.compare(priority.get(i), priority.get(parent(i)))>0) {
+		while(i>=0 && c.compare(priority.get(i), priority.get(parent(i)))>0) {
 			swap(i,parent(i));
 			i=parent(i);
 		}
 	}
 	
-	private int smaller(int i) {
-		if(c.compare(priority.get(left(i)), priority.get(right(i)))<0){
-			return left(i);
-		}else {
+	private int larger(int i) {
+		if(left(i)>=size()&& right(i)>=size())
+			return -1;
+		if(left(i)>=size())
 			return right(i);
-		}
-	}
-	
-	private int laeger(int i) {
-		if(c.compare(priority.get(left(i)), priority.get(right(i)))>0){
+		if(right(i)>=size())
+			return left(i);
+		if(c.compare(priority.get(left(i)), priority.get(right(i)))>=0){
 			return left(i);
 		}else {
 			return right(i);
