@@ -29,6 +29,8 @@ class HeapTest {
 		testHeap.add("Hello5", 5);
 		testHeap.add("Hello4", 4);
 		testHeap.add("Hello3", 3);
+		testHeap.changePriority("Hello7", 3);
+		testHeap.changePriority("Hello4", 6);
 		System.out.println(testHeap.peek());
 		System.out.println(testHeap.poll());
 		System.out.println(testHeap.poll());
