@@ -20,7 +20,7 @@ public class Heap<E,P> implements PriorityQueue<E, P>{
 	
 	/**
 	 * Constructor: an empty heap with a comparator
-	 * @param c the given comparator for this heap
+	 * @param c the comparator for this heap
 	 * */
 	public Heap(Comparator<P> c){
 		this.c=c;
@@ -80,6 +80,8 @@ public class Heap<E,P> implements PriorityQueue<E, P>{
 	/**
 	 * Adds the element e with priority p to this heap. 
 	 * Runs in O(log n) time.
+	 * @param e is the new element 
+	 * 		  p is the priority of the new element 
 	 * @throws IllegalArgumentException if this heap already contains an element that
 	 *                                  is equal to e (according to .equals())
 	 * */
@@ -95,6 +97,8 @@ public class Heap<E,P> implements PriorityQueue<E, P>{
 
 	/**
 	 * Change the original priority of e to p 
+	 * @param e is the element whose priority is to be changed
+	 * 		  p is the new priority of this element 
 	 * @throws NoSuchElementException if this heap does not contain e.
 	 * */
 	@Override
