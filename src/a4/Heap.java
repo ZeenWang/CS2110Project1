@@ -10,16 +10,16 @@ public class Heap<E,P> implements PriorityQueue<E, P>{
 	
 	private ArrayList<E> data=new ArrayList<E>();
 	private ArrayList<P> priority=new ArrayList<P>();
-	private Comparator<P> comparator=null;
+	private Comparator<P> c=null;
 	private HashMap<E, Integer> hashMap= new HashMap<E, Integer>();
 	
 	public Heap(Comparator<P> c){
-		this.comparator=c;
+		this.c=c;
 	}
 	
 	@Override
 	public Comparator<? super P> comparator() {
-		return (Comparator<? super P>) comparator;
+		return (Comparator<? super P>) c;
 	}
 
 	@Override
@@ -94,17 +94,32 @@ public class Heap<E,P> implements PriorityQueue<E, P>{
 	}
 	
 	private void moveDown(int i) {
-		while(comparator.compare(priority.get(i), comparator.compare(priority.get(left(i)), 
-				priority.get(right(i)))>0?priority.get(left(i)):priority.get(right(i)))<0) {
-			swap(i, comparator.compare(priority.get(left(i)), priority.get(right(i)))>0?left(i):right(i));
-			i=(comparator.compare(priority.get(left(i)), priority.get(right(i)))>0)?left(i):right(i);
+		while(c.compare(priority.get(i),priority.get(smaller(i)) )<0) {
+			swap(i, smaller(i));
+			i=smaller(i);
 		}
 	}
 	
 	private void moveUp(int i) {
-		while(comparator.compare(priority.get(i), priority.get(parent(i)))>0) {
+		while(c.compare(priority.get(i), priority.get(parent(i)))>0) {
 			swap(i,parent(i));
 			i=parent(i);
+		}
+	}
+	
+	private int smaller(int i) {
+		if(c.compare(priority.get(left(i)), priority.get(right(i)))<0){
+			return left(i);
+		}else {
+			return right(i);
+		}
+	}
+	
+	private int laeger(int i) {
+		if(c.compare(priority.get(left(i)), priority.get(right(i)))>0){
+			return left(i);
+		}else {
+			return right(i);
 		}
 	}
 }
