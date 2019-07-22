@@ -3,6 +3,11 @@ package controller;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 import org.eclipse.jdt.annotation.NonNull;
 
@@ -107,10 +112,16 @@ public abstract class MinMaxAI extends Controller {
 	 */
 	protected @Override Location nextMove(Game g) {
 		delay();
-		return HighestOne(g.getBoard(), depth, me, me).loc;
+		  //创建等待队列   
+        BlockingQueue<Runnable> bqueue = new ArrayBlockingQueue<Runnable>(20);   
+        //创建线程池，池中保存的线程数为3，允许的最大线程数为5  
+        ThreadPoolExecutor pool = new ThreadPoolExecutor(3,16,50,TimeUnit.MILLISECONDS,bqueue); 
+		Location finaLocation=HighestOne(pool , g.getBoard(), depth, me, me).loc;
+		pool.shutdown();
+		return finaLocation;
 	}
 	
-	protected Scores HighestOne (Board b,int depth,Player currentP, Player p) {
+	protected Scores HighestOne (final Executor executor,Board b,int depth,Player currentP, Player p) {
 		
 		Scores maxOrMin=null;
 		
@@ -127,9 +138,14 @@ public abstract class MinMaxAI extends Controller {
 			}else if (b.getState()==b.getState().DRAW) {
 				current.add(new Scores(loc,0)); 
 			}else {
-				newb=b.update(currentP, loc);
+				//newb=b.update(currentP, loc);
 				if(depth>1) {
-					current.add(new Scores(loc,HighestOne(newb, depth-1, currentP.opponent(), p).score));
+					executor.execute(new Runnable() {
+						@Override
+						public void run() {
+							current.add(new Scores(loc,HighestOne(executor,b.update(currentP, loc), depth-1, currentP.opponent(), p).score));
+						}
+					});
 				}else {
 					current.add(new Scores(loc,estimate(newb)));
 				}
