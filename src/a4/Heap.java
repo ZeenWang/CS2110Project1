@@ -5,7 +5,12 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.NoSuchElementException;
 
-
+/**
+ * An instance is a max-heap of distinct values of type E 
+ * with priorities of type P (Integer or Double). 
+ * Since it is a max-heap, the value with the highest priority will be 
+ * at the root of the heap. 
+ * */
 public class Heap<E,P> implements PriorityQueue<E, P>{
 	//
 	private ArrayList<E> data=new ArrayList<E>();
@@ -61,8 +66,9 @@ public class Heap<E,P> implements PriorityQueue<E, P>{
 	}
 	
 	/**
-	 * Return the value of this heap with the highest priority
+	 * Returns the value of this heap with the highest priority
 	 * Runs in O(1) constant time
+	 * @throws NoSuchElementException if this heap is empty 
 	 * */
 	@Override
 	public E peek() throws NoSuchElementException {
@@ -72,7 +78,10 @@ public class Heap<E,P> implements PriorityQueue<E, P>{
 	}
 	
 	/**
-	 * 
+	 * Adds the element e with priority p to this heap. 
+	 * Runs in O(log n) time.
+	 * @throws IllegalArgumentException if this heap already contains an element that
+	 *                                  is equal to e (according to .equals())
 	 * */
 	@Override
 	public void add(E e, P p) throws IllegalArgumentException {
@@ -84,7 +93,10 @@ public class Heap<E,P> implements PriorityQueue<E, P>{
 		moveUp(size()-1);
 	}
 
-
+	/**
+	 * Change the original priority of e to p 
+	 * @throws NoSuchElementException if this heap does not contain e.
+	 * */
 	@Override
 	public void changePriority(E e, P p) throws NoSuchElementException {
 		if(size()==0)
