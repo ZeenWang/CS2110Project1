@@ -7,26 +7,43 @@ import java.util.NoSuchElementException;
 
 
 public class Heap<E,P> implements PriorityQueue<E, P>{
-	
+	//
 	private ArrayList<E> data=new ArrayList<E>();
 	private ArrayList<P> priority=new ArrayList<P>();
 	private Comparator<P> c=null;
 	private HashMap<E, Integer> hashMap= new HashMap<E, Integer>();
 	
+	/**
+	 * Constructor: an empty heap with a comparator
+	 * @param c the given comparator for this heap
+	 * */
 	public Heap(Comparator<P> c){
 		this.c=c;
 	}
 	
+	/**
+	 * Returns the comparator used to order the priorities 
+	 * of this heap
+	 * */
 	@Override
 	public Comparator<? super P> comparator() {
 		return (Comparator<? super P>) c;
 	}
-
+	
+	/**
+	 * Returns the size of this heap.
+	 * Runs in O(1) constant time. 
+	 * */
 	@Override
 	public int size() {
 		return data.size();
 	}
-
+	
+	/**
+	 * Removes and returns the highest priority in the heap
+	 * Runs in O(log n) time
+	 * @throws NoSuchElementException if this heap is empty 
+	 * */
 	@Override
 	public E poll() throws NoSuchElementException {
 		if(size()==0)
@@ -42,14 +59,21 @@ public class Heap<E,P> implements PriorityQueue<E, P>{
 		return returnValue;
 		
 	}
-
+	
+	/**
+	 * Return the value of this heap with the highest priority
+	 * Runs in O(1) constant time
+	 * */
 	@Override
 	public E peek() throws NoSuchElementException {
 		if(size()==0)
 			throw new NoSuchElementException();
 		return data.get(0);
 	}
-
+	
+	/**
+	 * 
+	 * */
 	@Override
 	public void add(E e, P p) throws IllegalArgumentException {
 		if(data.contains(e))
@@ -59,6 +83,7 @@ public class Heap<E,P> implements PriorityQueue<E, P>{
 		hashMap.put(e,size()-1);
 		moveUp(size()-1);
 	}
+
 
 	@Override
 	public void changePriority(E e, P p) throws NoSuchElementException {
