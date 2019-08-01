@@ -1,16 +1,19 @@
 package discuss7;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.Comparator;
 import java.util.List;
+
+import org.junit.Test;
 
 ////////////////////////////////////////////////////////////////////////////
 // Insertion sort                                                         //
 ////////////////////////////////////////////////////////////////////////////
-public class insertionSort<E> extends Sorter<E>{
+public class InsertionSort<E> extends Sorter<E>{
 	
-	public insertionSort(Comparator<E> cmp) {
+	public InsertionSort(Comparator<E> cmp) {
 		super(cmp);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -61,5 +64,13 @@ public class insertionSort<E> extends Sorter<E>{
 			// so a[0...i) is sorted.
 			}
 		// termination: length == i so a[0..length) is a[0..i) which is sorted
+	}
+
+	public static class Tests extends Sorter.Tests {
+		@Override
+		protected Sorter<Integer> sorter() {
+			return new InsertionSort<Integer>(Comparator.naturalOrder());
+		}
+		
 	}
 }
