@@ -20,74 +20,74 @@ import gui.TextIO;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PathsTester {
 
-//	@Test
-//	/** Get a two-node graph with two nodes "Ithaca" and "Truck Depot" and no edges. <br>
-//	 * Test a 1-node path from Ithaca to Ithaca and <br>
-//	 * an empty shortest path from Ithaca to Truck Depot */
-//	public void test10OneNodeBoard() {
-//		Graph g = getGraph("info/Maps/OneNodeBoard.txt");
-//		NodeData n= g.getNode("Ithaca");
-//		List<NodeData> path= Adapter.shortest(n, n);
-//		List<NodeData> expected= new LinkedList<>();
-//		expected.add(n);
-//		assertEquals(expected, path);
-//		// System.out.println("Random: "+new Random(128).nextInt());
-//	}
-//
-//	@Test
-//	/** Get a two-node graph with two nodes "Ithaca" and "Truck Depot" and no edges. <br>
-//	 * Test a 1-node path from Ithaca to Ithaca and <br>
-//	 * an empty shortest path from Ithaca to Truck Depot */
-//	public void test20NoEdges() {
-//		Graph g= getGraph("info/Maps/TwoNodeNoEdge.txt");
-//		NodeData n= g.getNode("Ithaca");
-//		List<NodeData> path= Adapter.shortest(n, n);
-//		List<NodeData> expected= new LinkedList<>();
-//		expected.add(n);
-//		assertEquals(expected, path);
-//
-//		NodeData n1= g.getNode("Truck Depot");
-//		List<NodeData> path1= Adapter.shortest(n, n1);
-//		List<NodeData> expected1= new LinkedList<>();
-//		assertEquals(expected1, path1);
-//	}
-//
-//	@Test
-//	/** Get a two-node graph with two nodes "Ithaca" and "Truck Depot" and <br>
-//	 * an edge between them. <br>
-//	 * Test a 1-node path from Ithaca to Ithaca, <br>
-//	 * a 2-node shortest path from Ithaca to Truck Depot, and <br>
-//	 * a 2-node shortest path from Truck Depot to Ithaca */
-//	public void test30TwoNodeOneEdge() {
-//		Graph g= getGraph("info/Maps/TwoNodeBoard.txt");
-//		NodeData n= g.getNode("Ithaca");
-//		List<NodeData> path= Adapter.shortest(n, n);
-//		List<NodeData> expected= new LinkedList<>();
-//		expected.add(n);
-//		assertEquals(expected, path);
-//
-//		NodeData n1= g.getNode("Truck Depot");
-//		List<NodeData> path1= Adapter.shortest(n, n1);
-//		List<NodeData> expected1= new LinkedList<>();
-//		expected1.add(n);
-//		expected1.add(n1);
-//		assertEquals(expected1, path1);
-//
-//		List<NodeData> path2= Adapter.shortest(n1, n);
-//		List<NodeData> expected2= new LinkedList<>();
-//		expected2.add(n1);
-//		expected2.add(n);
-//		assertEquals(expected2, path2);
-//	}
-//
-//	@Test
-//	/** Test all shortest paths on map TestBoard1.txt */
-//	public void test40MapTestBoard1() {
-//		Graph g= getGraph("info/Maps/TestBoard1.txt");
-//		PathData pd= new PathData("info/Maps/TestBoard1distances.txt", g);
-//		assertEquals(3, pd.size);
-//		checkAllShortestPaths(g, pd);
-//	}
+	@Test
+	/** Get a two-node graph with two nodes "Ithaca" and "Truck Depot" and no edges. <br>
+	 * Test a 1-node path from Ithaca to Ithaca and <br>
+	 * an empty shortest path from Ithaca to Truck Depot */
+	public void test10OneNodeBoard() {
+		Graph g = getGraph("info/Maps/OneNodeBoard.txt");
+		NodeData n= g.getNode("Ithaca");
+		List<NodeData> path= Adapter.shortest(n, n);
+		List<NodeData> expected= new LinkedList<>();
+		expected.add(n);
+		assertEquals(expected, path);
+		// System.out.println("Random: "+new Random(128).nextInt());
+	}
+
+	@Test
+	/** Get a two-node graph with two nodes "Ithaca" and "Truck Depot" and no edges. <br>
+	 * Test a 1-node path from Ithaca to Ithaca and <br>
+	 * an empty shortest path from Ithaca to Truck Depot */
+	public void test20NoEdges() {
+		Graph g= getGraph("info/Maps/TwoNodeNoEdge.txt");
+		NodeData n= g.getNode("Ithaca");
+		List<NodeData> path= Adapter.shortest(n, n);
+		List<NodeData> expected= new LinkedList<>();
+		expected.add(n);
+		assertEquals(expected, path);
+
+		NodeData n1= g.getNode("Truck Depot");
+		List<NodeData> path1= Adapter.shortest(n, n1);
+		List<NodeData> expected1= new LinkedList<>();
+		assertEquals(expected1, path1);
+	}
+
+	@Test
+	/** Get a two-node graph with two nodes "Ithaca" and "Truck Depot" and <br>
+	 * an edge between them. <br>
+	 * Test a 1-node path from Ithaca to Ithaca, <br>
+	 * a 2-node shortest path from Ithaca to Truck Depot, and <br>
+	 * a 2-node shortest path from Truck Depot to Ithaca */
+	public void test30TwoNodeOneEdge() {
+		Graph g= getGraph("info/Maps/TwoNodeBoard.txt");
+		NodeData n= g.getNode("Ithaca");
+		List<NodeData> path= Adapter.shortest(n, n);
+		List<NodeData> expected= new LinkedList<>();
+		expected.add(n);
+		assertEquals(expected, path);
+
+		NodeData n1= g.getNode("Truck Depot");
+		List<NodeData> path1= Adapter.shortest(n, n1);
+		List<NodeData> expected1= new LinkedList<>();
+		expected1.add(n);
+		expected1.add(n1);
+		assertEquals(expected1, path1);
+
+		List<NodeData> path2= Adapter.shortest(n1, n);
+		List<NodeData> expected2= new LinkedList<>();
+		expected2.add(n1);
+		expected2.add(n);
+		assertEquals(expected2, path2);
+	}
+
+	@Test
+	/** Test all shortest paths on map TestBoard1.txt */
+	public void test40MapTestBoard1() {
+		Graph g= getGraph("info/Maps/TestBoard1.txt");
+		PathData pd= new PathData("info/Maps/TestBoard1distances.txt", g);
+		assertEquals(3, pd.size);
+		checkAllShortestPaths(g, pd);
+	}
 
 	@Test
 	/** Test all shortest paths on map seed16.txt */

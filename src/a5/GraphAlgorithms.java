@@ -66,7 +66,7 @@ public class GraphAlgorithms  {
 			d=frontier.getPriority(0);
 			f=frontier.poll();
 			settled.add(f, d);
-			//finalResult.add(f);
+			finalResult.add(f);
 			for (N wNode : f.outgoing().keySet()) {
 				if(settled.contain(wNode) ) {
 					if(d+f.outgoing().get(wNode).label() < settled.getPriority(wNode))
