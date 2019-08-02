@@ -163,4 +163,20 @@ public class Heap<E,P> implements PriorityQueue<E, P>{
 			return right(i);
 		}
 	}
+	
+	
+	public boolean contain(E e){
+		for(int i=0;i<data.size();i++) {
+			if(data.get(i).equals(e))
+				return true;
+		}
+		return false;
+	}
+	
+	public P getPriority(E e){
+		return priority.get(hashMap.get(e));
+	}
 }
+
+
+

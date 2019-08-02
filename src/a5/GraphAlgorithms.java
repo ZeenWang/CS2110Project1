@@ -2,6 +2,7 @@ package a5;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -56,31 +57,46 @@ public class GraphAlgorithms  {
 	List<N> shortestPath(N start, N end) {
 		Heap<N, Integer> frontier=new Heap<N, Integer>(new NodeComparator());
 		Heap<N, Integer> settled=new Heap<N, Integer>(new NodeComparator());
+		HashMap<N, N> finalPath= new HashMap<N, N>(); // the second N is the last Node before get to the first Node
 		List<N> finalResult=new LinkedList<N>();
+		
 		if(!dfs(start).contains(end))
 			return finalResult;
 		frontier.add(start, 0);
-		N f=null;
+		finalPath.put(start, start);
+		N f=start;
 		int d=0;
-		while(!frontier.contain(end)) {
-			d=frontier.getPriority(0);
+		while(!settled.contain(end)) {
+			d=frontier.getPriority(frontier.peek());
 			f=frontier.poll();
 			settled.add(f, d);
-			finalResult.add(f);
+			//finalResult.add(f);
 			for (N wNode : f.outgoing().keySet()) {
 				if(settled.contain(wNode) ) {
-					if(d+f.outgoing().get(wNode).label() < settled.getPriority(wNode))
+					if(d+f.outgoing().get(wNode).label() < settled.getPriority(wNode)) {
 						settled.changePriority(wNode,d+f.outgoing().get(wNode).label());
+						finalPath.replace(wNode, f);
+					}
 				}else if(frontier.contain(wNode)) {
-					if(d+f.outgoing().get(wNode).label() < frontier.getPriority(wNode))
+					if(d+f.outgoing().get(wNode).label() < frontier.getPriority(wNode)) {
 						frontier.changePriority(wNode, d+f.outgoing().get(wNode).label());
+						finalPath.replace(wNode, f);
+					}
 				}else{
 					frontier.add(wNode, d+f.outgoing().get(wNode).label());
+					finalPath.put(wNode, f);
 				}
 			}
 		}
 		
-		finalResult.add(end);
+		//finalPath.put(end, f);
+		N temp=end;
+		while(!temp.equals(start)) {
+			finalResult.add(0,temp);
+			temp=finalPath.get(temp);
+		}
+		finalResult.add(0,start);
+		System.out.println(finalResult);
 		return finalResult;
 		
 	}

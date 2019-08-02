@@ -71,6 +71,8 @@ public class PathsTester {
 		List<NodeData> expected1= new LinkedList<>();
 		expected1.add(n);
 		expected1.add(n1);
+		//System.out.println(expected1 + " ideal-r");
+		//System.out.println(path1 + " real-r");
 		assertEquals(expected1, path1);
 
 		List<NodeData> path2= Adapter.shortest(n1, n);
@@ -135,15 +137,13 @@ public class PathsTester {
 				List<NodeData> list= Adapter.shortest(pd.nodes[r], pd.nodes[c]);
 				
 				System.out.println(pathSum(list) +" my");
-				System.out.println(pd.dist[r][c] + " ideal-r");
+				
+				System.out.println( pd.nodes[r] + " to " + pd.nodes[c] + ":" + pd.dist[r][c] + " ideal");
 				
 				assertEquals(pd.dist[r][c], pathSum(list));
 
 				// check that first node of path and last node of path are correct
 				if (list.size() > 0) {
-					System.out.println(list +" my");
-					System.out.println(pd.nodes[r] + " ideal-r");
-					System.out.println(pd.nodes[c] + " ideal-c");
 					assertEquals(pd.nodes[r], list.get(0));
 					assertEquals(pd.nodes[c], list.get(list.size() - 1));
 				}
