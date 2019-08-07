@@ -34,7 +34,7 @@ public class Person {
 	 * @param birthDay must be in the range 1..31
 	 * */
 	public Person(String name, int birthYear, int birthMonth, int birthDay) {
-		assert(name!=null);
+		assert(name!=null && name!="");
 		assert(birthMonth>=1 && birthMonth<=12);
 		assert(birthDay>=1 && birthDay <=31);
 		this.name = name;
@@ -89,8 +89,10 @@ public class Person {
 	 */
 	public void setMother(Person m) {
 		if (m == null) {
-			this.mother.numChildren --;
-			this.mother = null;
+			if(this.mother!=null) {
+				this.mother.numChildren --;
+				this.mother = null;
+			}
 		} 
 		else {
 			checkMother(m);
@@ -108,8 +110,10 @@ public class Person {
 	 * */
 	public void setFather(Person f) {
 		if (f == null) {
-			this.father.numChildren --;
-			this.father = null;
+			if(this.father!=null) {
+				this.father.numChildren --;
+				this.father = null;
+			}
 		} 
 		else {
 			checkFather(f);
@@ -146,7 +150,7 @@ public class Person {
 	 * @param name a String of new name.
 	 */
 	public void setName(String name) {
-		assert(name != null);
+		assert(name != null && name!="");
 		this.name=name;
 	}
 	/**
@@ -162,7 +166,7 @@ public class Person {
 	 * @param m a integer of new birth month.
 	 */
 	public void setBirthMonth(int m) {
-		assert(birthMonth>=1 && birthMonth<=12);
+		assert(m>=1 && m<=12);
 		birthMonth=m;
 	}
 	
@@ -171,7 +175,7 @@ public class Person {
 	 * @param d a integer of new birth day.
 	 */
 	public void setBirthDay(int d) {
-		assert(birthDay>=1 && birthDay <=31);
+		assert(d>=1 && d <=31);
 		birthDay=d;
 	}
 	
