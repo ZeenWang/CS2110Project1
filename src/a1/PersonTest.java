@@ -12,10 +12,12 @@ class PersonTest {
 	static Person testCase() {
 		return new Person("Mike", 1983, 5, 8);
 	}
-	
-	// Group A /////////////////////////////////////////////////////////////////
-	
+		
 	// Black box tests
+	
+	/*
+	 * A-level
+	 */
 	
 	@Test
 	void testGroupA() {
@@ -50,8 +52,10 @@ class PersonTest {
 		assertThrows(AssertionError.class, () -> {new Person("Mike", 1983, 5, -5); });
 		assertThrows(AssertionError.class, () -> {new Person("Mike", 1983, 5, 40); });
 	}
-
-	// Group B /////////////////////////////////////////////////////////////////
+	
+	/*
+	 * B-level
+	 */
 	
 	@Test
 	void testSetName() {
@@ -122,11 +126,22 @@ class PersonTest {
 		assertSame(f, p.father());
 		assertEquals(f.numChildren(), 1);
 		assertEquals(p.numChildren(), 0);
+	}
+	
+	@Test
+	void testSetFatherNull() {
+		Person p = testCase();
+		Person f = new Person("Bob", 1, 2, 3);
 		
 		p.setFather(null);
 		assertSame(null, p.father());
 		assertEquals(f.numChildren(), 0);
 		assertEquals(p.numChildren(), 0);
+	}
+	
+	@Test
+	void testSetFatherSelf() {
+		Person p = testCase();
 		
 		p.setFather(p);
 		assertSame(p, p.father());
@@ -142,19 +157,32 @@ class PersonTest {
 		assertSame(m, p.mother());
 		assertEquals(m.numChildren(), 1);
 		assertEquals(p.numChildren(), 0);
+	}
+	
+	@Test
+	void testSetMotherNull() {
+		Person p = testCase();
+		Person m = new Person("Alice", 1, 2, 3);
 		
 		p.setMother(null);
 		assertSame(null, p.mother());
 		assertEquals(m.numChildren(), 0);
 		assertEquals(p.numChildren(), 0);
+	}
+	
+	@Test
+	void testSetMotherSelf() {
+		Person p = testCase();
 		
 		p.setMother(p);
 		assertSame(p, p.mother());
 		assertEquals(p.numChildren(), 1);
 	}
 	
-	// Group C tests ///////////////////////////////////////////////////////////
-	
+	/*
+	 * C-level
+	 */
+		
 	/** Set up and test isHalfSibling test.  The first four arguments indicate
 	 * the parents of a and b; the options are 0: unknown, 1 and 2: different people
 	 *

@@ -13,7 +13,6 @@ public class Exercises {
 	 * @return true if s is the same backwards and forwards.
 	 */
 	public static boolean isPalindrome(String s) {
-		assert(s != null);
 		for(int i=0;i< s.length()/2;i++)
 			if(s.charAt(i) != s.charAt(s.length() -i -1)) 
 				return false;
@@ -26,7 +25,6 @@ public class Exercises {
 	 * @return a copy of s with all whitespace and punctuation removed.
 	 */
 	public static String normalize(String s) {
-		assert(s != null);
 		s = s.replaceAll("[^a-zA-Z0-9]", "");
 		return s;
 	}
@@ -37,7 +35,6 @@ public class Exercises {
 	 * @return the median of the values.
 	 */
 	public static int median(int[ ] values) {
-		assert(values != null);
 		// sort the array.
 		int buffer=values[0];
 		for (int i=0;i<(values.length/2+1);i++) {
@@ -63,7 +60,6 @@ public class Exercises {
 	 * @return the number of 0’s in values.
 	 */
 	public static int numZeros(int[ ] values) {
-		assert(values != null);
 		int count=0;
 		for (int i: values) {
 			if (i==0)
@@ -78,11 +74,10 @@ public class Exercises {
 	 * @return the mean of the values.
 	 */
 	public static double mean(int[ ] values) {
-		assert(values != null);
 		int sum=0;
 		for(int i : values)
 			sum=sum+i;
-		return (double)sum/values.length;
+		return sum/values.length;
 	}
 	
 	/** 

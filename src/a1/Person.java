@@ -1,8 +1,7 @@
 package a1;
+// Kurt Chua & Zeen Wang
 
 /** an instance of a person */
-// Kurt Chua and Zeen Wang
-
 public class Person {
 	
 	// class invariant: non-null and non-empty string
@@ -49,8 +48,7 @@ public class Person {
 	
 	/** returns this person's name */
 	public String name() {
-		return this.name;
-	
+		return name;
 	}
 	
 	/** returns this person's mother */
@@ -149,7 +147,6 @@ public class Person {
 	 * @param name a String of new name.
 	 */
 	public void setName(String name) {
-		assert(name != null);
 		this.name=name;
 	}
 	/**
@@ -165,7 +162,6 @@ public class Person {
 	 * @param m a integer of new birth month.
 	 */
 	public void setBirthMonth(int m) {
-		assert(birthMonth>=1 && birthMonth<=12);
 		birthMonth=m;
 	}
 	
@@ -174,7 +170,6 @@ public class Person {
 	 * @param d a integer of new birth day.
 	 */
 	public void setBirthDay(int d) {
-		assert(birthDay>=1 && birthDay <=31);
 		birthDay=d;
 	}
 	
@@ -185,7 +180,6 @@ public class Person {
 	 * @return true if this and other share a known parent. 
 	 */
 	public boolean isHalfSibling(Person other) {
-		assert(other != null);
 		if (other.father()==this.father() || other.father()==this.mother() || 
 			other.mother()== this.mother() || other.mother()== this.father())
 			return true;
@@ -199,7 +193,6 @@ public class Person {
 	 * @return true if this person’s birthday is before other’s. 
 	 */
 	public boolean isOlderThan(Person other) {
-		assert(other != null);
 		if (this.birthYear() != other.birthYear())
 			return this.birthYear() < other.birthYear();
 		if (this.birthMonth() != other.birthMonth())
