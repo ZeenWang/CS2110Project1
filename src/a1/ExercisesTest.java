@@ -30,6 +30,7 @@ class ExercisesTest {
 		
 		// test for method median.
 		assertEquals(5, Exercises.median(listA));
+		assertEquals(1, Exercises.median(listB));
 		System.out.println("Method median Tested!");
 		
 		// test for method normalize.
@@ -37,11 +38,11 @@ class ExercisesTest {
 		assertEquals("GetupreparedSouwillfeelgoodifutry", Exercises.normalize(sentenceA));
 		System.out.println("Method normalize Tested!");
 		
-		// test for method normalize.
+		// test for method isPalindrome.
 		String sentenceB = "boob";
 		assertEquals(true, Exercises.isPalindrome(sentenceB));
 		assertEquals(false, Exercises.isPalindrome(sentenceA));
-		System.out.println("Method normalize Tested!");
+		System.out.println("Method isPalindrome Tested!");
 	}
 
 }
